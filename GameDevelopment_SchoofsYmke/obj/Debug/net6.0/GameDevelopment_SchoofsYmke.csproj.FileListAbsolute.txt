@@ -23,3 +23,5 @@ C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\obj\Debug\net6.0\GameDevelopment_SchoofsYmke.pdb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\obj\Debug\net6.0\GameDevelopment_SchoofsYmke.genruntimeconfig.cache
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\obj\Debug\net6.0\ref\GameDevelopment_SchoofsYmke.dll
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Sprite_Character.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\obj\Debug\net6.0\GameDevelopment_SchoofsYmke.sourcelink.json

@@ -9,6 +9,9 @@ namespace GameDevelopment_SchoofsYmke
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D texture;
+        private Hero hero;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -21,11 +24,14 @@ namespace GameDevelopment_SchoofsYmke
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            hero = new Hero(texture);
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            texture = Content.Load<Texture2D>("Sprite_Character");
 
             // TODO: use this.Content to load your game content here
         }
@@ -36,7 +42,7 @@ namespace GameDevelopment_SchoofsYmke
                 Exit();
 
             // TODO: Add your update logic here
-
+            hero.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -45,6 +51,9 @@ namespace GameDevelopment_SchoofsYmke
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            hero.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
