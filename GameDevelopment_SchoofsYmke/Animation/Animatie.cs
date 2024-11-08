@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
         public AnimationFrame CurrentFrame { get; set; }
         private List<AnimationFrame> frames;
         private int counter;
+        private double secondCounter = 0;
 
         public Animatie()
         {
@@ -23,13 +25,38 @@ namespace GameDevelopment_SchoofsYmke.Animation
             CurrentFrame = frames[0];
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             CurrentFrame = frames[counter];
-            counter++;
+
+            secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
+            int fps = 12;
+
+            if (secondCounter >= 1d / fps)
+            {
+                counter++;
+                secondCounter = 0;
+            }
+
             if (counter >= frames.Count)
             {
                 counter = 0;
+            }
+        }
+
+        public void GetFramesFromTexturePropeties
+            (int width, int height, int numberOfWidthSprites, int numberOfHeightsprites)
+        {
+            int widthOfFrame = width / numberOfWidthSprites;
+            int heightOfFrame = height / numberOfHeightsprites;
+
+            for (int y = 0; y <= height - heightOfFrame; y+= heightOfFrame)
+            {
+                for (int x = 0; x <= width - widthOfFrame; x+= widthOfFrame)
+                {
+                    frames.Add(new AnimationFrame(
+                        new Rectangle(x, y, widthOfFrame, heightOfFrame)));
+                }
             }
         }
     }

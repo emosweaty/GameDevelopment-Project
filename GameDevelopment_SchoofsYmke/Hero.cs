@@ -20,15 +20,7 @@ namespace GameDevelopment_SchoofsYmke
         {
             this.texture = texture;
             animation = new Animatie();
-            animation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(180, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(360, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(540, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(720, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(900, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(1080, 0, 180, 240)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(1260, 0, 180, 240)));
-
+            animation.GetFramesFromTexturePropeties(texture.Width, texture.Height,8,1);
         }
 
         public void Draw(SpriteBatch sprite)
@@ -38,7 +30,7 @@ namespace GameDevelopment_SchoofsYmke
 
         public void Update(GameTime gameTime)
         {
-            animation.Update();
+            animation.Update(gameTime);
         }
     }
 }
