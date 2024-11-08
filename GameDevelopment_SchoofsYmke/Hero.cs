@@ -20,14 +20,14 @@ namespace GameDevelopment_SchoofsYmke
         {
             this.texture = texture;
             animation = new Animatie();
-            animation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(60, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(120, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(180, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(240, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(300, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(360, 0, 60, 80)));
-            animation.AddFrame(new AnimationFrame(new Rectangle(420, 0, 60, 80)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(180, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(360, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(540, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(720, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(900, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(1080, 0, 180, 240)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(1260, 0, 180, 240)));
 
         }
 
