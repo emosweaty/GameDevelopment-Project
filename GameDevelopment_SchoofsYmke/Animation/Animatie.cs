@@ -38,17 +38,18 @@ namespace GameDevelopment_SchoofsYmke.Animation
                 secondCounter = 0;
             }
 
-            if (counter >= frames.Count)
+            if (counter >= 8) //Was frames.count moet inorde worden gebracht
             {
                 counter = 0;
             }
         }
 
-        public void GetFramesFromTexturePropeties
+        public void GetFramesFromTexture
             (int width, int height, int numberOfWidthSprites, int numberOfHeightsprites)
         {
             int widthOfFrame = width / numberOfWidthSprites;
             int heightOfFrame = height / numberOfHeightsprites;
+            int maxFrames = numberOfWidthSprites;
 
             for (int y = 0; y <= height - heightOfFrame; y+= heightOfFrame)
             {

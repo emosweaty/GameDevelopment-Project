@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameDevelopment_SchoofsYmke.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,6 +11,7 @@ namespace GameDevelopment_SchoofsYmke
         private SpriteBatch _spriteBatch;
 
         private Texture2D texture;
+  
         private Hero hero;
 
         public Game1()
@@ -24,7 +26,7 @@ namespace GameDevelopment_SchoofsYmke
             // TODO: Add your initialization logic here
 
             base.Initialize();
-            hero = new Hero(texture);
+            hero = new Hero(texture, new KeyboardReader());
 
         }
 
