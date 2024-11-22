@@ -1,5 +1,6 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
 using GameDevelopment_SchoofsYmke.Interfaces;
+using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,12 +23,15 @@ namespace GameDevelopment_SchoofsYmke
         private Vector2 speed;
         private Vector2 speedup;
         private IInputReader inputReader;
-
+        
+        
 
         public Hero(Texture2D texture, IInputReader inputReader)
         {
             this.texture = texture;
             this.inputReader = inputReader;
+            
+
             animation = new Animatie();
             animation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
 
@@ -36,6 +40,7 @@ namespace GameDevelopment_SchoofsYmke
             speedup = new Vector2(0.1f, 0.1f);
         }
 
+       
         public void Draw(SpriteBatch sprite)
         {
             sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White);
@@ -44,8 +49,8 @@ namespace GameDevelopment_SchoofsYmke
         }
 
         public void Update(GameTime gameTime)
-        {         
-            Move(); 
+        {
+            Move();
             animation.Update(gameTime);
         }
 
@@ -66,6 +71,7 @@ namespace GameDevelopment_SchoofsYmke
             direction *= speed;
             location += direction;
 
+            //MovementManager
         }
 
     }

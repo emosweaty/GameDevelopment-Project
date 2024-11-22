@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameDevelopment_SchoofsYmke
+namespace GameDevelopment_SchoofsYmke.Movement
 {
     internal class KeyboardReader : IInputReader
     {
@@ -27,6 +27,6 @@ namespace GameDevelopment_SchoofsYmke
             return direction;
         }
 
-      
+
     }
 }

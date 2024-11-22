@@ -13,6 +13,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
         private List<AnimationFrame> frames;
         private int counter;
         private double secondCounter = 0;
+        public int setCounter;
 
         public Animatie()
         {
