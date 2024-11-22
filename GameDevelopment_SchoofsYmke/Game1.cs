@@ -1,4 +1,6 @@
-﻿using GameDevelopment_SchoofsYmke.Interfaces;
+﻿using GameDevelopment_SchoofsYmke.Blocks;
+using GameDevelopment_SchoofsYmke.Display;
+using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,11 +17,15 @@ namespace GameDevelopment_SchoofsYmke
   
         private Hero hero;
 
+        private DisplayManager display;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            display = new DisplayManager(_graphics);
         }
 
         protected override void Initialize()
@@ -29,6 +35,8 @@ namespace GameDevelopment_SchoofsYmke
             base.Initialize();
             hero = new Hero(texture, new KeyboardReader());
 
+            display.Apply();
+            
         }
 
         protected override void LoadContent()
@@ -45,8 +53,12 @@ namespace GameDevelopment_SchoofsYmke
                 Exit();
 
             // TODO: Add your update logic here
+
+            
+
             hero.Update(gameTime);
             base.Update(gameTime);
+            
         }
 
         protected override void Draw(GameTime gameTime)
@@ -60,5 +72,7 @@ namespace GameDevelopment_SchoofsYmke
 
             base.Draw(gameTime);
         }
+
+        
     }
 }
