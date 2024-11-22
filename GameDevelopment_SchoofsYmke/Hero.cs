@@ -23,7 +23,7 @@ namespace GameDevelopment_SchoofsYmke
         private Vector2 speed;
         private Vector2 speedup;
         private IInputReader inputReader;
-        
+        private SpriteEffects spriteEffects;
         
 
         public Hero(Texture2D texture, IInputReader inputReader)
@@ -36,14 +36,15 @@ namespace GameDevelopment_SchoofsYmke
             animation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
 
             location = new Vector2(10, 10);
-            speed = new Vector2(5, 1);
+            speed = new Vector2(7, 2);
             speedup = new Vector2(0.1f, 0.1f);
         }
 
        
         public void Draw(SpriteBatch sprite)
         {
-            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White);
+            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White,
+                0f, Vector2.Zero, 1f, spriteEffects, 0f);
 
         
         }
@@ -72,6 +73,9 @@ namespace GameDevelopment_SchoofsYmke
             location += direction;
 
             //MovementManager
+
+            if(direction.X > 0) { spriteEffects = SpriteEffects.None; }
+            if(direction.X < 0) { spriteEffects = SpriteEffects.FlipHorizontally; }
         }
 
          
