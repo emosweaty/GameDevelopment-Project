@@ -15,7 +15,7 @@ namespace GameDevelopment_SchoofsYmke.Blocks
         public bool Passable { get; set; }
         public Color Color { get; set; }
         public Texture2D Texture { get; set; }
-        //public CollideWithEvent CollideWithEvent { get; set; }
+        
 
         public Block(int x, int y, GraphicsDevice graphics)
         {

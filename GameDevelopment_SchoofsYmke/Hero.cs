@@ -35,8 +35,8 @@ namespace GameDevelopment_SchoofsYmke
             animation = new Animatie();
             animation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
 
-            location = new Vector2(10, 10);
-            speed = new Vector2(7, 2);
+            location = new Vector2(100, 700);
+            speed = new Vector2(10, 1);
             speedup = new Vector2(0.1f, 0.1f);
         }
 
@@ -44,7 +44,7 @@ namespace GameDevelopment_SchoofsYmke
         public void Draw(SpriteBatch sprite)
         {
             sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White,
-                0f, Vector2.Zero, 1f, spriteEffects, 0f);
+                0f, Vector2.Zero, 1.3f, spriteEffects, 0f);
 
         
         }
