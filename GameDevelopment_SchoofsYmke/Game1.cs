@@ -16,8 +16,9 @@ namespace GameDevelopment_SchoofsYmke
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
         private Hero hero;
+
         private DisplayManager display;
-        private TileMap tilemap;
+        private LevelManager level;
 
         public Game1()
         {
@@ -26,13 +27,12 @@ namespace GameDevelopment_SchoofsYmke
             IsMouseVisible = true;
 
             display = new DisplayManager(_graphics);
+            level = new LevelManager();
             
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
             
             hero = new Hero(texture, new KeyboardReader());
@@ -42,17 +42,10 @@ namespace GameDevelopment_SchoofsYmke
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice); 
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var contentLoader = new ContentLoader(Content);
-            texture = contentLoader.LoadTexture("Sprite_CharacterBIG");
-            tilemap = new TileMap();
-            tilemap.LoadMap("Content/map.txt");
-            tilemap.LoadContent(Content, "Tilesheet");
-
-
-
-            // TODO: use this.Content to load your game content here
+            texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
+            level.LoadLevel(Content, "Level1", "Content/Map.txt", "TileSheet");
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,8 +53,6 @@ namespace GameDevelopment_SchoofsYmke
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            
 
             hero.Update(gameTime);
             base.Update(gameTime);
@@ -74,7 +65,7 @@ namespace GameDevelopment_SchoofsYmke
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            tilemap.Draw(_spriteBatch);
+            level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
             _spriteBatch.End();
 
