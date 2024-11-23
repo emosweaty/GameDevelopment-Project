@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Blocks;
+using GameDevelopment_SchoofsYmke.Content;
 using GameDevelopment_SchoofsYmke.Display;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
@@ -36,18 +37,18 @@ namespace GameDevelopment_SchoofsYmke
             
             hero = new Hero(texture, new KeyboardReader());
 
-            tilemap = new TileMap();
-
             display.Apply();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
+            _spriteBatch = new SpriteBatch(GraphicsDevice); 
 
-            tilemap.LoadContent(Content, "TileSheet.png");
-            tilemap.LoadMap("Content/Map.txt");
+            var contentLoader = new ContentLoader(Content);
+            texture = contentLoader.LoadTexture("Sprite_CharacterBIG");
+            tilemap = new TileMap();
+            tilemap.LoadMap("Content/map.txt");
+            tilemap.LoadContent(Content, "Tilesheet");
 
 
 

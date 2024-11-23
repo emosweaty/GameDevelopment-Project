@@ -22,16 +22,8 @@ namespace GameDevelopment_SchoofsYmke.Map
         }
 
         public void LoadContent(ContentManager content, string tilesheetPath) 
-        {
-            try
-            {
+        {    
                 tilesheet = content.Load<Texture2D>(tilesheetPath);  
-            } catch (Exception e)
-            {
-                Console.WriteLine("Error loading tilesheet");
-            }
-
-
         }
 
 
@@ -59,7 +51,7 @@ namespace GameDevelopment_SchoofsYmke.Map
                 }
                 y++;
             }
-            Console.WriteLine("Tilemap Loaded: " + tilemap.Count + " tiles.");
+            
         }
 
 
