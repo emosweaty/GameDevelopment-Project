@@ -11,6 +11,10 @@ namespace GameDevelopment_SchoofsYmke.Interfaces
     {
         public Vector2 Position { get; set; }
         public Vector2 Speed { get; set; }
+        public Vector2 Gravity { get; set; }
+        public Vector2 Jump { get; set; }
+        public Vector2 Velocity { get; set; }
+        public bool OnGround { get; set; }
         public IInputReader InputReader { get; set; }
     }
 }

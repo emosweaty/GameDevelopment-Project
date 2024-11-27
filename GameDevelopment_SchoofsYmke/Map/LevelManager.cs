@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using GameDevelopment_SchoofsYmke.Interfaces;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,16 @@ namespace GameDevelopment_SchoofsYmke.Map
     {
         private readonly Dictionary<string, TileMap> levels;
         private TileMap currentLevel;
+        private List<ICollidable> collidables;
 
         public LevelManager()
         {
             levels = new Dictionary<string, TileMap>();
+            collidables = new List<ICollidable>();
         }
 
         public TileMap Currentlevel => currentLevel;
+        public IEnumerable<ICollidable> Collidables => collidables;
 
         public void LoadLevel(ContentManager content, 
             string levelId, string mapFilePath,string tilesheetPath)
@@ -30,6 +34,7 @@ namespace GameDevelopment_SchoofsYmke.Map
                 levels[levelId] = tileMap;
             }
             currentLevel = levels[levelId];
+            collidables = currentLevel.GetCollidableObjects().ToList();
         }
     }
 }

@@ -7,6 +7,9 @@ using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace GameDevelopment_SchoofsYmke
 {
@@ -19,6 +22,7 @@ namespace GameDevelopment_SchoofsYmke
 
         private DisplayManager display;
         private LevelManager level;
+        private CollisionManager movement;
 
         public Game1()
         {
@@ -28,14 +32,13 @@ namespace GameDevelopment_SchoofsYmke
 
             display = new DisplayManager(_graphics);
             level = new LevelManager();
-            
         }
 
         protected override void Initialize()
         {
             base.Initialize();
             
-            hero = new Hero(texture, new KeyboardReader());
+            //hero = new Hero(texture, new KeyboardReader());
 
             display.Apply();
         }
@@ -46,6 +49,12 @@ namespace GameDevelopment_SchoofsYmke
 
             texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
             level.LoadLevel(Content, "Level1", "Content/Map.txt", "TileSheet");
+
+            var collidables = level.Currentlevel.GetCollidableObjects().ToList();
+            hero = new Hero(texture, new KeyboardReader());
+            var movement = new CollisionManager(new List<ICollidable>(collidables){ hero });
+
+            hero.SetMovementManager(movement);
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,7 +72,6 @@ namespace GameDevelopment_SchoofsYmke
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             _spriteBatch.Begin();
             level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);

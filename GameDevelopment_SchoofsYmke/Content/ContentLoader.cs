@@ -11,24 +11,24 @@ namespace GameDevelopment_SchoofsYmke.Content
 {
     internal class ContentLoader
     {
-        private readonly ContentManager content;
+        //private readonly ContentManager content;
 
-        public ContentLoader(ContentManager content)
-        {
-            this.content = content;
-        }
+        //public ContentLoader(ContentManager content)
+        //{
+        //    this.content = content;
+        //}
 
-        public Texture2D LoadTexture(string assetName)
-        {
-            return content.Load<Texture2D>(assetName);
-        }
+        //public Texture2D LoadTexture(string assetName)
+        //{
+        //    return content.Load<Texture2D>(assetName);
+        //}
 
-        public TileMap LoadTileMap(string mapPath, string tilesheetPath)
-        {
-            var tileMap = new TileMap();
-            tileMap.LoadMap(mapPath);
-            tileMap.LoadContent(content, tilesheetPath);
-            return tileMap;
-        }
+        //public TileMap LoadTileMap(string mapPath, string tilesheetPath)
+        //{
+        //    var tileMap = new TileMap();
+        //    tileMap.LoadMap(mapPath);
+        //    tileMap.LoadContent(content, tilesheetPath);
+        //    return tileMap;
+        //}
     }
 }

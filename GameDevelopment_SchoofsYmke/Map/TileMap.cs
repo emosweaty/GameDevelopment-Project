@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameDevelopment_SchoofsYmke.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,25 +13,22 @@ namespace GameDevelopment_SchoofsYmke.Map
 {
     internal class TileMap
     {
-        private Dictionary<Vector2, int> tilemap;
+        private  List<Tile> tiles;
         private Texture2D tilesheet;
-        private readonly List<Rectangle> solidTiles;
 
         public TileMap()
         {
-            tilemap = new Dictionary<Vector2, int>();
-            solidTiles = new List<Rectangle>();
+            tiles = new List<Tile>();
         }
 
-        public void LoadContent(ContentManager content, string tilesheetPath) 
-        {    
-                tilesheet = content.Load<Texture2D>(tilesheetPath);  
+        public void LoadContent(ContentManager content, string tilesheetPath)
+        {
+            tilesheet = content.Load<Texture2D>(tilesheetPath);
         }
 
         public void LoadMap(string filepath)
         {
-            tilemap.Clear();
-            solidTiles.Clear();
+            tiles.Clear();
 
             using StreamReader reader = new(filepath);
             int y = 0;
@@ -42,56 +40,40 @@ namespace GameDevelopment_SchoofsYmke.Map
 
                 for (int x = 0; x < item.Length; x++)
                 {
-                    if (int.TryParse(item[x], out int tileId))
+                    if (int.TryParse(item[x], out int value))
                     {
-                        if (tileId > 0)
-                        {
-                            tilemap[new Vector2(x, y)] = tileId;
-
-                            if (IsSolid(tileId))
-                            {
-                                solidTiles.Add(new Rectangle(x * 128, y * 128, 128, 128));
-                            }
+                        if (value > 0)
+                        {   
+                            
+                            var tileBounds = new Rectangle(x * 400, y * 400, 200, 200);
+                            bool isSolid = value == 2;
+                            tiles.Add(new Tile(value, tileBounds, isSolid));
                         }
                     }
-                }
+                }     
                 y++;
             }
             
         }
 
-        private bool IsSolid(int titleId)
+        public IEnumerable<ICollidable> GetCollidableObjects()
         {
-            return titleId == 2;
+            return tiles.Where(tiles => tiles.IsSolid)
+                .Cast<ICollidable>();
         }
 
-        public bool IsTitleSolid(Rectangle boundingBox)
-        {
-            foreach (var solidTile in solidTiles)
-            {
-                if (solidTile.Intersects(boundingBox))
-                {
-                    return true;
-                }
-            }
-                return false;
-        }
+       
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var item in tilemap)
-            {
-                Vector2 position = item.Key;
-                int tileId = item.Value;
+            foreach (var tile in tiles)
+            { 
+                int tilesPerRow = tilesheet.Width / 200;
+                int tileX = (tile.TileId - 1) % tilesPerRow;
+                int tileY = (tile.TileId - 1) / tilesPerRow;
 
-                int tilesPerRow = tilesheet.Width / 128;
-                int tileX = (tileId - 1) % tilesPerRow;
-                int tileY = (tileId - 1) / tilesPerRow;
-
-                Rectangle source = new Rectangle(tileX * 128, tileY * 128, 128, 128);
-                Rectangle destination = new Rectangle((int)position.X * 400, (int)position.Y * 400, 128, 128);
-
-                spriteBatch.Draw(tilesheet, destination, source , Color.White);
+                Rectangle source = new Rectangle(tileX * 200, tileY * 400, 200, 200);
+                spriteBatch.Draw(tilesheet, tile.Bounds, source, Color.White);
             }
 
         }
