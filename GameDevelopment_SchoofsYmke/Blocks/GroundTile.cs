@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Blocks
 {
-    internal class SolidBlock : ICollidable
+    internal class GroundTile : ICollidable
     {
-        public Rectangle Bounds { get; set; }
+        public Rectangle Bounds { get; private set; }
         public bool IsSolid => true;
-
-        public SolidBlock(Rectangle bounds)
-        {
-            Bounds = bounds;
-        }
 
         public bool CollidesWith(ICollidable other)
         {

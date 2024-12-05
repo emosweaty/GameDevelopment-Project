@@ -12,45 +12,75 @@ namespace GameDevelopment_SchoofsYmke.Movement
 {
     internal class CollisionManager
     {
-        private readonly List<ICollidable> collidables;
+        public readonly List<ICollidable> collidables;
 
         public CollisionManager(List<ICollidable> collidables)
         {
             this.collidables = collidables ?? new List<ICollidable>();
         }
 
-        public Vector2 CalculateNewPosition(Vector2 currentPosition, Vector2 direction, ICollidable movingObject)
+        public Vector2 CalculateNewPosition(Hero hero, Vector2 direction)
         {
-            Vector2 newPosition = currentPosition + direction;
+            Vector2 newPosition = hero.location + direction;
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
-                movingObject.Bounds.Width, movingObject.Bounds.Height);  
+                hero.Bounds.Width, hero.Bounds.Height);
 
 
             foreach (var collidable in collidables)
             {
+                if (!collidable.IsSolid)
+                    continue;
+
                 if (newBounds.Intersects(collidable.Bounds))
                 {
-                    if (newBounds.Right > collidable.Bounds.Left && currentPosition.X < collidable.Bounds.Left)
-                    {
-                        direction.X = 0;
-                    }
-                    if (newBounds.Left < collidable.Bounds.Right && currentPosition.X > collidable.Bounds.Right)
-                    {
-                        direction.X = 0;
-                    }
-                    if (newBounds.Bottom > collidable.Bounds.Top && currentPosition.Y < collidable.Bounds.Top)
+                    if (newBounds.Bottom > collidable.Bounds.Top && hero.Bounds.Bottom <= collidable.Bounds.Top)
                     {
                         direction.Y = 0;
+                        newPosition.Y = collidable.Bounds.Top - hero.Bounds.Height;
                     }
-                    if (newBounds.Top < collidable.Bounds.Bottom && currentPosition.Y > collidable.Bounds.Bottom)
+                    else if (newBounds.Top < collidable.Bounds.Bottom && hero.Bounds.Top >= collidable.Bounds.Bottom)
                     {
                         direction.Y = 0;
+                        newPosition.Y = collidable.Bounds.Bottom;
+                    }
+
+                    if (newBounds.Right > collidable.Bounds.Left && hero.Bounds.Right <= collidable.Bounds.Left)
+                    {
+                        direction.X = 0; 
+                        newPosition.X = collidable.Bounds.Left - hero.Bounds.Width;
+                    }
+                    else if (newBounds.Left < collidable.Bounds.Right && hero.Bounds.Left >= collidable.Bounds.Right)
+                    {
+                        direction.X = 0;
+                        newPosition.X = collidable.Bounds.Right;
                     }
                 }
             }
+            hero.location = newPosition;
             return direction;
+        }
+
+        public bool IsOnGround(Hero hero)
+        {
+            var heroBounds = hero.Bounds;
+
+            foreach (var obj in collidables)
+            {
+                if (!obj.IsSolid) continue;
+
+                var objectBounds = obj.Bounds;
+
+                if (heroBounds.Bottom >= objectBounds.Top &&
+                heroBounds.Bottom <= objectBounds.Top &&
+                heroBounds.Right > objectBounds.Left &&  
+                heroBounds.Left < objectBounds.Right)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

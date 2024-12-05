@@ -14,6 +14,7 @@ namespace GameDevelopment_SchoofsYmke.Map
         public int TileId { get; set; }
         private Rectangle bounds;
         private bool isSolid;
+        public bool IsGround => false;
 
         public Tile(int tileId, Rectangle bounds, bool isSolid) 
         {

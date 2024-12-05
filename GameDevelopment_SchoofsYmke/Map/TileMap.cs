@@ -62,8 +62,6 @@ namespace GameDevelopment_SchoofsYmke.Map
                 .Cast<ICollidable>();
         }
 
-       
-
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var tile in tiles)

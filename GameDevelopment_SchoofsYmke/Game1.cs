@@ -1,5 +1,4 @@
 ﻿using GameDevelopment_SchoofsYmke.Blocks;
-using GameDevelopment_SchoofsYmke.Content;
 using GameDevelopment_SchoofsYmke.Display;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
@@ -22,8 +21,9 @@ namespace GameDevelopment_SchoofsYmke
 
         private DisplayManager display;
         private LevelManager level;
-        private CollisionManager movement;
 
+        //Voor debuggen (Bounds)
+        //private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -38,7 +38,7 @@ namespace GameDevelopment_SchoofsYmke
         {
             base.Initialize();
             
-            //hero = new Hero(texture, new KeyboardReader());
+            //hero = new Hero(texture, null);
 
             display.Apply();
         }
@@ -47,11 +47,17 @@ namespace GameDevelopment_SchoofsYmke
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //Voor debuggen (Bounds)
+            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            //blokTexture.SetData(new[] { Color.White });
+
+
             texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
             level.LoadLevel(Content, "Level1", "Content/Map.txt", "TileSheet");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
-            hero = new Hero(texture, new KeyboardReader());
+
+            hero = new Hero(texture);
             var movement = new CollisionManager(new List<ICollidable>(collidables){ hero });
 
             hero.SetMovementManager(movement);
@@ -75,6 +81,11 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch.Begin();
             level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
+            
+            //Voor Debuggen (bounds)
+            //Rectangle heroBounds = hero.Bounds;
+            //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
