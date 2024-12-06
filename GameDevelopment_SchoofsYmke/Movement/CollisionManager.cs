@@ -13,15 +13,21 @@ namespace GameDevelopment_SchoofsYmke.Movement
     internal class CollisionManager
     {
         public readonly List<ICollidable> collidables;
+        public bool IsDead { get; set; } = false;
 
-        public CollisionManager(List<ICollidable> collidables)
+        private readonly int screenHeight;
+        private readonly int screenWidth;
+        public CollisionManager(List<ICollidable> collidables, int screenWidth, int screenHeight)
         {
             this.collidables = collidables ?? new List<ICollidable>();
+            this.screenWidth = screenWidth;
+            this.screenHeight = screenHeight;
         }
 
         public Vector2 CalculateNewPosition(Hero hero, Vector2 direction)
         {
             Vector2 newPosition = hero.location + direction;
+            Vector2 spawnPoint = new Vector2(0,890);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
@@ -55,6 +61,25 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     {
                         direction.X = 0;
                         newPosition.X = collidable.Bounds.Right;
+                    }
+
+
+                    if (newPosition.X < 0)
+                    {
+                        newPosition.X = 0;
+                        direction.X = 0;
+                    }
+                    else if (newPosition.X + hero.Bounds.Width > screenWidth)
+                    {
+                        newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
+                        direction.X = 0;
+                    }
+
+                    if (newPosition.Y + hero.Bounds.Height >= screenHeight)
+                    {
+                        newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
+                        direction = Vector2.Zero;
+                        IsDead = true;
                     }
                 }
             }

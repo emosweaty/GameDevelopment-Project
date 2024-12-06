@@ -25,7 +25,7 @@ namespace GameDevelopment_SchoofsYmke
         private Rectangle bounds;
         private SpriteEffects spriteEffects;
 
-        Animatie animation;
+        Animatie walkingAnimation;
 
         private IInputReader inputReader;
         private CollisionManager collision;
@@ -37,8 +37,8 @@ namespace GameDevelopment_SchoofsYmke
             this.texture = texture;
             this.inputReader = new KeyboardReader(this);
 
-            animation = new Animatie();
-            animation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
+            walkingAnimation = new Animatie();
+            walkingAnimation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
 
             location = new Vector2(10, 890);
             speed = new Vector2(10, 1);
@@ -55,7 +55,7 @@ namespace GameDevelopment_SchoofsYmke
 
         public void Draw(SpriteBatch sprite)
         {
-            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White,
+            sprite.Draw(texture, location, walkingAnimation.CurrentFrame.SourceRectangle, Color.White,
                 0f, Vector2.Zero, 1.0f, spriteEffects, 0f);
         }
 
@@ -64,7 +64,7 @@ namespace GameDevelopment_SchoofsYmke
         public void Update(GameTime gameTime)
         {
             Move(gameTime);
-            animation.Update(gameTime);
+            walkingAnimation.Update(gameTime);
         }
 
         private void Move(GameTime gameTime)

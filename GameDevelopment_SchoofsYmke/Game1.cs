@@ -17,10 +17,12 @@ namespace GameDevelopment_SchoofsYmke
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
-        private Hero hero;
+        private Texture2D screen;
 
+        private Hero hero;
         private DisplayManager display;
         private LevelManager level;
+        private CollisionManager movement;
 
         //Voor debuggen (Bounds)
         //private Texture2D blokTexture;
@@ -51,14 +53,18 @@ namespace GameDevelopment_SchoofsYmke
             //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
             //blokTexture.SetData(new[] { Color.White });
 
-
+            screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
             level.LoadLevel(Content, "Level1", "Content/Map.txt", "TileSheet");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             hero = new Hero(texture);
-            var movement = new CollisionManager(new List<ICollidable>(collidables){ hero });
+            int screenWidth = display.ScreenWidth;
+            int screenHeight = display.ScreenHeight;
+            movement = new CollisionManager(new List<ICollidable>(collidables){ hero }, screenWidth, screenHeight);
+
+            
 
             hero.SetMovementManager(movement);
         }
@@ -68,6 +74,13 @@ namespace GameDevelopment_SchoofsYmke
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (movement.IsDead)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.E))
+                {
+                    movement.IsDead = false;
+                }
+            }
 
             hero.Update(gameTime);
             base.Update(gameTime);
@@ -81,10 +94,16 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch.Begin();
             level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
-            
+
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
             //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
+
+            if (movement.IsDead)
+            {
+                _spriteBatch.Draw(screen, new Vector2(0, 0), Color.White);
+                Debug.WriteLine("hero is dead");
+            }
 
             _spriteBatch.End();
 
