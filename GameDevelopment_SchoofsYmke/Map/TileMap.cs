@@ -34,6 +34,7 @@ namespace GameDevelopment_SchoofsYmke.Map
             int y = 0;
             string line;
 
+
             while ((line = reader.ReadLine()) != null)
             {
                 string[] item = line.Split(",");
@@ -42,11 +43,11 @@ namespace GameDevelopment_SchoofsYmke.Map
                 {
                     if (int.TryParse(item[x], out int value))
                     {
-                        if (value > 0)
+                        if (value > -1)
                         {   
                             
-                            var tileBounds = new Rectangle(x * 400, y * 400, 200, 200);
-                            bool isSolid = value == 2;
+                            var tileBounds = new Rectangle(x * 64, y * 64, 64, 64);
+                            bool isSolid = value == 1 || value == 2 || value == 3 || value == 4;
                             tiles.Add(new Tile(value, tileBounds, isSolid));
                         }
                     }
@@ -66,12 +67,16 @@ namespace GameDevelopment_SchoofsYmke.Map
         {
             foreach (var tile in tiles)
             { 
-                int tilesPerRow = tilesheet.Width / 200;
-                int tileX = (tile.TileId - 1) % tilesPerRow;
-                int tileY = (tile.TileId - 1) / tilesPerRow;
+                int tilesPerRow = tilesheet.Width / 64;
+                int tileX = (tile.TileId) % tilesPerRow;
+                int tileY = (tile.TileId) / tilesPerRow;
 
-                Rectangle source = new Rectangle(tileX * 200, tileY * 400, 200, 200);
+                Rectangle source = new Rectangle(tileX * 64, tileY * 64, 64, 64);
                 spriteBatch.Draw(tilesheet, tile.Bounds, source, Color.White);
+
+                //Texture2D debugTexture = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+                //debugTexture.SetData(new[] { Color.Red });
+                //spriteBatch.Draw(debugTexture, tile.Bounds, Color.Red * 0.5f);
             }
 
         }

@@ -38,11 +38,11 @@ namespace GameDevelopment_SchoofsYmke
             this.inputReader = new KeyboardReader(this);
 
             walkingAnimation = new Animatie();
-            walkingAnimation.GetFramesFromTexture(texture.Width, texture.Height,8,2);
+            walkingAnimation.GetFramesFromTexture(texture.Width, texture.Height,8,1);
 
-            location = new Vector2(10, 890);
+            location = new Vector2(10, 870);
             speed = new Vector2(10, 1);
-            bounds = new Rectangle((int)location.X, (int)location.Y,texture.Width/8, texture.Height/2);
+            bounds = new Rectangle((int)location.X, (int)location.Y,texture.Width/8, texture.Height);
 
             IsOnGround = location.Y >= 900f;
             

@@ -17,12 +17,12 @@ namespace GameDevelopment_SchoofsYmke.Movement
         private Hero hero;
         private bool onGround;
 
-        private const float accelerate = 0.4f;
+        private const float accelerate = 0.5f;
         private const float friction = accelerate *0.7f;
         private const float tolerance = friction * 0.9f;
-        private const float gravity = 8.8f / 60;
+        private const float gravity = 25.0f / 60;
         private float verticalVelocity = 0f;
-        private float jumpForce = -5.5f;
+        private float jumpForce = -10.5f;
 
         private float maxSpeed = 10f;
 

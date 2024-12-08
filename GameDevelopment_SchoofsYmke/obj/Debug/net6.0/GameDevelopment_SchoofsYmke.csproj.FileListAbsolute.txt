@@ -29,5 +29,7 @@ C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\TileSheet.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Map.txt
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\TileSheet.png
-C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\player run 48x48.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\DeadScreen.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Tiles.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Level1.txt
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\player run.xnb

@@ -27,7 +27,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
         public Vector2 CalculateNewPosition(Hero hero, Vector2 direction)
         {
             Vector2 newPosition = hero.location + direction;
-            Vector2 spawnPoint = new Vector2(0,890);
+            Vector2 spawnPoint = new Vector2(0,885);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
@@ -39,28 +39,41 @@ namespace GameDevelopment_SchoofsYmke.Movement
                 if (!collidable.IsSolid)
                     continue;
 
+                Rectangle collidableBounds = collidable.Bounds;
+
                 if (newBounds.Intersects(collidable.Bounds))
                 {
-                    if (newBounds.Bottom > collidable.Bounds.Top && hero.Bounds.Bottom <= collidable.Bounds.Top)
+                    if (newBounds.Bottom >= collidableBounds.Top &&
+                        hero.Bounds.Bottom <= collidableBounds.Top + 10 &&
+                        newBounds.Right > collidableBounds.Left &&
+                        newBounds.Left < collidableBounds.Right)
                     {
                         direction.Y = 0;
-                        newPosition.Y = collidable.Bounds.Top - hero.Bounds.Height;
-                    }
-                    else if (newBounds.Top < collidable.Bounds.Bottom && hero.Bounds.Top >= collidable.Bounds.Bottom)
-                    {
-                        direction.Y = 0;
-                        newPosition.Y = collidable.Bounds.Bottom;
+                        newPosition.Y = collidableBounds.Top - hero.Bounds.Height;
                     }
 
-                    if (newBounds.Right > collidable.Bounds.Left && hero.Bounds.Right <= collidable.Bounds.Left)
+                    if (newBounds.Top < collidableBounds.Bottom &&
+                        hero.Bounds.Top >= collidableBounds.Bottom &&
+                        newBounds.Right > collidableBounds.Left &&
+                        newBounds.Left < collidableBounds.Right)
                     {
-                        direction.X = 0; 
-                        newPosition.X = collidable.Bounds.Left - hero.Bounds.Width;
+                        direction.Y = 0;
+                        newPosition.Y = collidableBounds.Bottom;
                     }
-                    else if (newBounds.Left < collidable.Bounds.Right && hero.Bounds.Left >= collidable.Bounds.Right)
+
+                    if (newBounds.Right > collidableBounds.Left &&
+                        hero.Bounds.Right <= collidableBounds.Left &&
+                        newBounds.Bottom > collidableBounds.Top + 20)
                     {
                         direction.X = 0;
-                        newPosition.X = collidable.Bounds.Right;
+                        newPosition.X = collidableBounds.Left - hero.Bounds.Width;
+                    }
+                    else if (newBounds.Left < collidableBounds.Right &&
+                             hero.Bounds.Left >= collidableBounds.Right &&
+                             newBounds.Bottom > collidableBounds.Top + 20)
+                    {
+                        direction.X = 0;
+                        newPosition.X = collidableBounds.Right;
                     }
 
 
@@ -97,8 +110,8 @@ namespace GameDevelopment_SchoofsYmke.Movement
 
                 var objectBounds = obj.Bounds;
 
-                if (heroBounds.Bottom >= objectBounds.Top &&
-                heroBounds.Bottom <= objectBounds.Top &&
+                if (heroBounds.Bottom >= objectBounds.Top -5 &&
+                heroBounds.Bottom <= objectBounds.Top +5 &&
                 heroBounds.Right > objectBounds.Left &&  
                 heroBounds.Left < objectBounds.Right)
                 {

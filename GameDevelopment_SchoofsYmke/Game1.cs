@@ -50,12 +50,12 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+           // blokTexture = new Texture2D(GraphicsDevice, 1, 1);
             //blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
-            texture = Content.Load<Texture2D>("Sprite_CharacterBIG");
-            level.LoadLevel(Content, "Level1", "Content/Map.txt", "TileSheet");
+            texture = Content.Load<Texture2D>("player run");
+            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Tiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
@@ -89,7 +89,7 @@ namespace GameDevelopment_SchoofsYmke
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.DarkSlateBlue);
 
             _spriteBatch.Begin();
             level.Currentlevel?.Draw(_spriteBatch);
