@@ -25,27 +25,31 @@ namespace GameDevelopment_SchoofsYmke
         private Rectangle bounds;
         private SpriteEffects spriteEffects;
 
-        Animatie walkingAnimation;
+        Animatie animation;
 
         private IInputReader inputReader;
         private CollisionManager collision;
 
         public bool IsOnGround { get; private set; }
+        public bool IsMoving { get; set; }
+        public bool IsJumping { get; set; }
+        public AnimationState CurrentState { get; set; }
 
         public Hero(Texture2D texture)
         {
             this.texture = texture;
             this.inputReader = new KeyboardReader(this);
+            CurrentState = Animation.AnimationState.Idle;
 
-            walkingAnimation = new Animatie();
-            walkingAnimation.GetFramesFromTexture(texture.Width, texture.Height,8,1);
+            animation = new Animatie();
+            animation.GetFramesFromTexture(texture.Width, texture.Height, 13, 8);
 
             location = new Vector2(10, 870);
             speed = new Vector2(10, 1);
-            bounds = new Rectangle((int)location.X, (int)location.Y,texture.Width/8, texture.Height);
+            bounds = new Rectangle((int)location.X, (int)location.Y, texture.Width / 13, texture.Height / 8);
 
             IsOnGround = location.Y >= 900f;
-            
+
         }
 
         public void SetMovementManager(CollisionManager collision)
@@ -53,9 +57,15 @@ namespace GameDevelopment_SchoofsYmke
             this.collision = collision;
         }
 
+        public void SetState(AnimationState state)
+        {
+            CurrentState = state;
+            animation.SetAnimationState(state);
+        }
+
         public void Draw(SpriteBatch sprite)
         {
-            sprite.Draw(texture, location, walkingAnimation.CurrentFrame.SourceRectangle, Color.White,
+            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White,
                 0f, Vector2.Zero, 1.0f, spriteEffects, 0f);
         }
 
@@ -64,7 +74,8 @@ namespace GameDevelopment_SchoofsYmke
         public void Update(GameTime gameTime)
         {
             Move(gameTime);
-            walkingAnimation.Update(gameTime);
+            animation.Update(gameTime);
+            HandleState();
         }
 
         private void Move(GameTime gameTime)
@@ -91,7 +102,24 @@ namespace GameDevelopment_SchoofsYmke
 
             if (direction.X > 0) { spriteEffects = SpriteEffects.None; }
             if (direction.X < 0) { spriteEffects = SpriteEffects.FlipHorizontally; }
-            
+
+        }
+
+        private void HandleState()
+        {
+            if (IsMoving)
+            {
+                animation.SetAnimationState(AnimationState.Moving);
+            }
+            else if (IsJumping)
+            {
+                animation.SetAnimationState(AnimationState.Jumping);
+            }
+            else
+            {
+                animation.SetAnimationState(AnimationState.Idle);
+            }
+
         }
 
         public Rectangle Bounds => bounds;

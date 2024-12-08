@@ -47,12 +47,21 @@ namespace GameDevelopment_SchoofsYmke.Movement
             {
                 direction.X = direction.X + accelerate;
                 direction.X = MathHelper.Clamp(direction.X, -maxSpeed, maxSpeed);
+                if (onGround && verticalVelocity >= 0)
+                {
+                    hero.IsMoving = true;
+                }
             }
             else if (state.IsKeyDown(Keys.Left))
             {
                 direction.X = direction.X - accelerate;
                 direction.X = MathHelper.Clamp(direction.X, -maxSpeed, maxSpeed);
+                if (onGround && verticalVelocity >= 0)
+                {
+                    hero.IsMoving = true;
+                }
             }
+        
             else
             {
                 if (onGround == true)
@@ -62,13 +71,21 @@ namespace GameDevelopment_SchoofsYmke.Movement
                 if (Math.Abs(direction.X) <= tolerance)
                 {
                     direction.X = 0f;
+                    hero.IsMoving = false;
                 }
+
             }
 
             if (state.IsKeyDown(Keys.Space) && onGround == true)
             {
-
                 verticalVelocity = jumpForce;
+                hero.IsJumping = true;
+                hero.IsMoving = false;
+            }
+
+            if (onGround && verticalVelocity >= 0)
+            {
+                hero.IsJumping = false; 
             }
 
             if (!onGround)

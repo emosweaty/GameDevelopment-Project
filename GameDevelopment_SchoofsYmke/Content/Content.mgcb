@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:DeadScreen.png
 
+#begin HeroSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HeroSprite.png
+
 #begin player run.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,18 +61,6 @@
 /processorParam:TextureFormat=Color
 /build:Sprite_Character.png
 
-#begin Sprite_CharacterBIG.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprite_CharacterBIG.png
-
 #begin Tiles.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -72,16 +72,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tiles.png
-
-#begin TileSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:TileSheet.png
 

@@ -25,7 +25,7 @@ namespace GameDevelopment_SchoofsYmke
         private CollisionManager movement;
 
         //Voor debuggen (Bounds)
-        //private Texture2D blokTexture;
+        private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,11 +50,11 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-           // blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            //blokTexture.SetData(new[] { Color.White });
+            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
-            texture = Content.Load<Texture2D>("player run");
+            texture = Content.Load<Texture2D>("HeroSprite");
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Tiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
@@ -96,13 +96,12 @@ namespace GameDevelopment_SchoofsYmke
             hero.Draw(_spriteBatch);
 
             //Voor Debuggen (bounds)
-            //Rectangle heroBounds = hero.Bounds;
-            //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
+            Rectangle heroBounds = hero.Bounds;
+            _spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
 
             if (movement.IsDead)
             {
                 _spriteBatch.Draw(screen, new Vector2(0, 0), Color.White);
-                Debug.WriteLine("hero is dead");
             }
 
             _spriteBatch.End();

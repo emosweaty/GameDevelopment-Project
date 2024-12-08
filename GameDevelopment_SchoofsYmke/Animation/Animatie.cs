@@ -1,34 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Animation
 {
+    public enum AnimationState { Moving, Jumping, Idle}
     public class Animatie
     {
         public AnimationFrame CurrentFrame { get; set; }
-        private List<AnimationFrame> frames;
+        private Dictionary<AnimationState, (int startFrame, int frameCount)> animations;
+        private List<AnimationFrame> allFrames;
+        private AnimationState currentState;
+        private int currentRow;
+        private int framesPerRow;
+        private int extraFrames;
         private int counter;
         private double secondCounter = 0;
-        public int setCounter;
 
         public Animatie()
         {
-            frames = new List<AnimationFrame>();
+            animations = new Dictionary<AnimationState, (int startFrame, int frameCount)>();
+            allFrames = new List<AnimationFrame>();
         }
-
-        public void AddFrame(AnimationFrame frame)
+        public void SetAnimationState(AnimationState state)
         {
-            frames.Add(frame);
-            CurrentFrame = frames[0];
+            if (currentState != state)
+            {
+                currentState = state;
+                counter = 0; 
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            CurrentFrame = frames[counter];
+            var (startFrame, frameCount) = animations[currentState];
+            CurrentFrame = allFrames[startFrame + (counter % frameCount)]; 
 
             secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
             int fps = 12;
@@ -39,7 +49,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
                 secondCounter = 0;
             }
 
-            if (counter >= 8) //Was frames.count moet inorde worden gebracht
+            if (counter >= frameCount)
             {
                 counter = 0;
             }
@@ -48,18 +58,24 @@ namespace GameDevelopment_SchoofsYmke.Animation
         public void GetFramesFromTexture
             (int width, int height, int numberOfWidthSprites, int numberOfHeightsprites)
         {
+            allFrames.Clear();
+
             int widthOfFrame = width / numberOfWidthSprites;
             int heightOfFrame = height / numberOfHeightsprites;
-            int maxFrames = numberOfWidthSprites;
 
-            for (int y = 0; y <= height - heightOfFrame; y+= heightOfFrame)
+            for (int y = 0; y < height; y += heightOfFrame)
             {
-                for (int x = 0; x <= width - widthOfFrame; x+= widthOfFrame)
+                for (int x = 0; x < width; x += widthOfFrame)
                 {
-                    frames.Add(new AnimationFrame(
-                        new Rectangle(x, y, widthOfFrame, heightOfFrame)));
+                    allFrames.Add(new AnimationFrame(new Rectangle(x, y, widthOfFrame, heightOfFrame)));
                 }
             }
+
+            animations[AnimationState.Moving] = (13, 9);
+            animations[AnimationState.Idle] = (0, 8);
+            animations[AnimationState.Jumping] = (65, 12); 
         }
+
     }
+    
 }
