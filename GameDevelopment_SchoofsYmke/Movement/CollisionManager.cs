@@ -16,8 +16,8 @@ namespace GameDevelopment_SchoofsYmke.Movement
         public bool IsDead { get; set; } = false;
 
         private readonly int screenHeight;
-        private readonly int screenWidth;
-        public CollisionManager(List<ICollidable> collidables, int screenWidth, int screenHeight)
+        private readonly Point screenWidth;
+        public CollisionManager(List<ICollidable> collidables, Point screenWidth, int screenHeight)
         {
             this.collidables = collidables ?? new List<ICollidable>();
             this.screenWidth = screenWidth;
@@ -27,12 +27,12 @@ namespace GameDevelopment_SchoofsYmke.Movement
         public Vector2 CalculateNewPosition(Hero hero, Vector2 direction)
         {
             Vector2 newPosition = hero.location + direction;
-            Vector2 spawnPoint = new Vector2(0,885);
+            Vector2 spawnPoint = new Vector2(0,900);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
                 hero.Bounds.Width, hero.Bounds.Height);
-
+             
 
             foreach (var collidable in collidables)
             {
@@ -44,7 +44,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
                 if (newBounds.Intersects(collidable.Bounds))
                 {
                     if (newBounds.Bottom >= collidableBounds.Top &&
-                        hero.Bounds.Bottom <= collidableBounds.Top + 10 &&
+                        hero.Bounds.Bottom <= collidableBounds.Top + 20 && 
                         newBounds.Right > collidableBounds.Left &&
                         newBounds.Left < collidableBounds.Right)
                     {
@@ -63,7 +63,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
 
                     if (newBounds.Right > collidableBounds.Left &&
                         hero.Bounds.Right <= collidableBounds.Left &&
-                        newBounds.Bottom > collidableBounds.Top + 20)
+                        newBounds.Bottom > collidableBounds.Top + 28)
                     {
                         direction.X = 0;
                         newPosition.X = collidableBounds.Left - hero.Bounds.Width;
@@ -82,7 +82,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
                         newPosition.X = 0;
                         direction.X = 0;
                     }
-                    else if (newPosition.X + hero.Bounds.Width > screenWidth)
+                    else if (newPosition.X + hero.Bounds.Width > screenWidth.X)
                     {
                         newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
                         direction.X = 0;

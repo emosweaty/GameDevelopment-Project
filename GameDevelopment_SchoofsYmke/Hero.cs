@@ -23,12 +23,16 @@ namespace GameDevelopment_SchoofsYmke
         public Vector2 location;
         private Vector2 speed;
         private Rectangle bounds;
+        private Vector2 positionOffset;
         private SpriteEffects spriteEffects;
 
         Animatie animation;
 
         private IInputReader inputReader;
         private CollisionManager collision;
+
+        private const int boundsWidth = 65;  
+        private const int boundsHeight = 110;
 
         public bool IsOnGround { get; private set; }
         public bool IsMoving { get; set; }
@@ -39,14 +43,20 @@ namespace GameDevelopment_SchoofsYmke
         {
             this.texture = texture;
             this.inputReader = new KeyboardReader(this);
-            CurrentState = Animation.AnimationState.Idle;
+            CurrentState = AnimationState.Idle;
 
             animation = new Animatie();
             animation.GetFramesFromTexture(texture.Width, texture.Height, 13, 8);
 
-            location = new Vector2(10, 870);
+            location = new Vector2(40, 700);
+            positionOffset = new Vector2(-100, -60);
+
             speed = new Vector2(10, 1);
-            bounds = new Rectangle((int)location.X, (int)location.Y, texture.Width / 13, texture.Height / 8);
+
+            //int boundsWidth = 100;
+            //int boundsHeight = 150;
+            //offsetBounds = new Vector2((texture.Width / 13 - boundsWidth) / 2, (texture.Height / 8 - boundsHeight) / 2);
+            //bounds = new Rectangle(location.ToPoint() + offsetBounds.ToPoint(), new Point(boundsWidth, boundsHeight));
 
             IsOnGround = location.Y >= 900f;
 
@@ -65,7 +75,7 @@ namespace GameDevelopment_SchoofsYmke
 
         public void Draw(SpriteBatch sprite)
         {
-            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White,
+            sprite.Draw(texture, location + positionOffset, animation.CurrentFrame.SourceRectangle, Color.White,
                 0f, Vector2.Zero, 1.0f, spriteEffects, 0f);
         }
 
@@ -80,7 +90,6 @@ namespace GameDevelopment_SchoofsYmke
 
         private void Move(GameTime gameTime)
         {
-            Debug.WriteLine(IsOnGround);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             Vector2 direction = inputReader.ReadInput(gameTime) * speed;
@@ -89,7 +98,7 @@ namespace GameDevelopment_SchoofsYmke
             location.X += adjustedMovement.X * deltaTime;
             location.Y += adjustedMovement.Y * deltaTime;
 
-            bounds.Location = location.ToPoint();
+           // bounds.Location = (location + offsetBounds).ToPoint();
 
             if (collision != null)
             {
@@ -122,7 +131,18 @@ namespace GameDevelopment_SchoofsYmke
 
         }
 
-        public Rectangle Bounds => bounds;
+        public Rectangle Bounds
+        {
+            get
+            {
+                // Center the bounds relative to the location
+                return new Rectangle(
+                    (int)(location.X),
+                    (int)(location.Y),
+                    boundsWidth,
+                    boundsHeight);
+            }
+        }
 
         public bool IsSolid => true;
 

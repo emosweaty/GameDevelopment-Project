@@ -23,9 +23,10 @@ namespace GameDevelopment_SchoofsYmke
         private DisplayManager display;
         private LevelManager level;
         private CollisionManager movement;
+        private CameraManager camera;
 
         //Voor debuggen (Bounds)
-        private Texture2D blokTexture;
+        //private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -34,6 +35,7 @@ namespace GameDevelopment_SchoofsYmke
 
             display = new DisplayManager(_graphics);
             level = new LevelManager();
+            camera = new CameraManager();
         }
 
         protected override void Initialize()
@@ -50,19 +52,19 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            blokTexture.SetData(new[] { Color.White });
+            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            //blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("HeroSprite");
-            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Tiles");
+            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             hero = new Hero(texture);
             int screenWidth = display.ScreenWidth;
             int screenHeight = display.ScreenHeight;
-            movement = new CollisionManager(new List<ICollidable>(collidables){ hero }, screenWidth, screenHeight);
+            movement = new CollisionManager(new List<ICollidable>(collidables){ hero }, level.MapSize, display.ScreenHeight);
 
             
 
@@ -83,6 +85,7 @@ namespace GameDevelopment_SchoofsYmke
             }
 
             hero.Update(gameTime);
+            camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
         }
@@ -91,13 +94,13 @@ namespace GameDevelopment_SchoofsYmke
         {
             GraphicsDevice.Clear(Color.DarkSlateBlue);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
 
             //Voor Debuggen (bounds)
-            Rectangle heroBounds = hero.Bounds;
-            _spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
+            //Rectangle heroBounds = hero.Bounds;
+            //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
 
             if (movement.IsDead)
             {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameDevelopment_SchoofsYmke.Map
+namespace GameDevelopment_SchoofsYmke.Blocks
 {
     internal class Tile : ICollidable
     {
@@ -16,7 +16,7 @@ namespace GameDevelopment_SchoofsYmke.Map
         private bool isSolid;
         public bool IsGround => false;
 
-        public Tile(int tileId, Rectangle bounds, bool isSolid) 
+        public Tile(int tileId, Rectangle bounds, bool isSolid)
         {
             TileId = tileId;
             this.bounds = bounds;

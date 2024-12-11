@@ -3,52 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\movement\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\movement\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\map\\tilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\map\\tilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\display\\displaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\display\\displaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\movement\\collisionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\movement\\collisionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\content\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\content\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\content\\level1-deco.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\content\\level1-deco.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\content\\level1.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\content\\level1.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\interfaces\\icollidable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\interfaces\\icollidable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\map\\tilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\map\\tilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\map\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\map\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\blocks\\decotile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\blocks\\decotile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\movement\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\movement\\cameramanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\display\\displaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\display\\displaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\blocks\\solidblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\blocks\\solidblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\movement\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\movement\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\content\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\content\\map.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\blocks\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\blocks\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\blocks\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\blocks\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\blocks\\groundtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\blocks\\groundtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\interfaces\\icollidable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|solutionrelative:gamedevelopment_schoofsymke\\interfaces\\icollidable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12DFD85B-B6C4-401C-81F0-22C02E74E639}|GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke.csproj|c:\\users\\ymkes\\documents\\aa school\\game development\\gamedevelopment_schoofsymke\\gamedevelopment_schoofsymke\\interfaces\\iinputreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +94,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -79,44 +103,80 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Map.txt",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Map.txt",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Content\\Map.txt",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Map.txt",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Content\\Map.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-12-03T22:09:32.118Z"
+              "Title": "CameraManager.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CameraManager.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Movement\\CameraManager.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CameraManager.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Movement\\CameraManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T22:20:27.692Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KeyboardReader.cs",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAYwC0AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T21:15:16.067Z",
+              "DocumentIndex": 2,
+              "Title": "Level1-Deco.txt",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1-Deco.txt",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Content\\Level1-Deco.txt",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1-Deco.txt",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Content\\Level1-Deco.txt",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAABAAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-12-10T20:38:55.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "Level1.txt",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-12-07T13:38:24.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Game1.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Game1.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Game1.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Game1.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAuwEIAAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T09:16:44.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DecoTile.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\DecoTile.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Blocks\\DecoTile.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\DecoTile.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Blocks\\DecoTile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T19:39:26.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "TileMap.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Map\\TileMap.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Map\\TileMap.cs",
               "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Map\\TileMap.cs",
               "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Map\\TileMap.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwEEAAAAxAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAkwF4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T22:05:13.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-03T22:05:13.804Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "DisplayManager.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Display\\DisplayManager.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Display\\DisplayManager.cs",
@@ -124,75 +184,11 @@
               "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Display\\DisplayManager.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAB4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T22:33:47.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T22:33:47.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CollisionManager.cs",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEgAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T09:24:23.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Game1.cs",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Game1.cs",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Game1.cs",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Game1.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAwBoAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T09:16:44.475Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Hero.cs",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Hero.cs",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Hero.cs",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Hero.cs",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Hero.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAQwCcAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T16:17:23.729Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Animatie.cs",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAUwCIAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T16:39:47.596Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Level1.txt",
-              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
-              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
-              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
-              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Content\\Level1.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAB6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-12-07T13:38:24.221Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "SolidBlock.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\SolidBlock.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Blocks\\SolidBlock.cs",
@@ -204,7 +200,56 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CollisionManager.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Movement\\CollisionManager.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAFQAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T09:24:23.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LevelManager.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Map\\LevelManager.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Map\\LevelManager.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Map\\LevelManager.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Map\\LevelManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T20:40:11.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "KeyboardReader.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Movement\\KeyboardReader.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAAwBYAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:15:16.067Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 11,
+              "Title": "Hero.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Hero.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Hero.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Hero.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Hero.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAAwB8AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T16:17:23.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Block.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\Block.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Blocks\\Block.cs",
@@ -216,7 +261,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
+              "Title": "GroundTile.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\GroundTile.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Blocks\\GroundTile.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\GroundTile.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Blocks\\GroundTile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T19:39:37.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Map.txt",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Map.txt",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Content\\Map.txt",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Content\\Map.txt",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Content\\Map.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-12-10T19:23:22.052Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Tile.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\Tile.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Blocks\\Tile.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Blocks\\Tile.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Blocks\\Tile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T19:44:05.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Animatie.cs",
+              "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
+              "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
+              "ToolTip": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
+              "RelativeToolTip": "GameDevelopment_SchoofsYmke\\Animation\\Animatie.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAAAEoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T16:39:47.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "ICollidable.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Interfaces\\ICollidable.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Interfaces\\ICollidable.cs",
@@ -228,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "IInputReader.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Interfaces\\IInputReader.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Interfaces\\IInputReader.cs",
@@ -240,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "IGameObject.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Interfaces\\IGameObject.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Interfaces\\IGameObject.cs",
@@ -252,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "IMoveable.cs",
               "DocumentMoniker": "C:\\Users\\ymkes\\Documents\\AA School\\Game Development\\GameDevelopment_SchoofsYmke\\GameDevelopment_SchoofsYmke\\Interfaces\\IMoveable.cs",
               "RelativeDocumentMoniker": "GameDevelopment_SchoofsYmke\\Interfaces\\IMoveable.cs",

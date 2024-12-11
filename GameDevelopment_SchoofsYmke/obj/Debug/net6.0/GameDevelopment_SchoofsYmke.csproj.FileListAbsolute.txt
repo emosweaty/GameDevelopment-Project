@@ -31,3 +31,5 @@ C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\player run.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Tiles.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\HeroSprite.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Level1-Deco.txt
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\DecoTiles.xnb
