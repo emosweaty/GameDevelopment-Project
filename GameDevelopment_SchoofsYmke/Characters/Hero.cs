@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace GameDevelopment_SchoofsYmke
+namespace GameDevelopment_SchoofsYmke.Characters
 {
     internal class Hero : IGameObject, ICollidable
     {
@@ -31,18 +31,19 @@ namespace GameDevelopment_SchoofsYmke
         private IInputReader inputReader;
         private CollisionManager collision;
 
-        private const int boundsWidth = 65;  
+        private const int boundsWidth = 65;
         private const int boundsHeight = 110;
 
         public bool IsOnGround { get; private set; }
         public bool IsMoving { get; set; }
         public bool IsJumping { get; set; }
+        public Vector2 Velocity { get; private set; }
         public AnimationState CurrentState { get; set; }
 
         public Hero(Texture2D texture)
         {
             this.texture = texture;
-            this.inputReader = new KeyboardReader(this);
+            inputReader = new KeyboardReader(this);
             CurrentState = AnimationState.Idle;
 
             animation = new Animatie();
@@ -95,10 +96,12 @@ namespace GameDevelopment_SchoofsYmke
             Vector2 direction = inputReader.ReadInput(gameTime) * speed;
             Vector2 adjustedMovement = collision?.CalculateNewPosition(this, direction) ?? direction;
 
+            Velocity = direction * speed;
+
             location.X += adjustedMovement.X * deltaTime;
             location.Y += adjustedMovement.Y * deltaTime;
 
-           // bounds.Location = (location + offsetBounds).ToPoint();
+            // bounds.Location = (location + offsetBounds).ToPoint();
 
             if (collision != null)
             {
@@ -135,10 +138,9 @@ namespace GameDevelopment_SchoofsYmke
         {
             get
             {
-                // Center the bounds relative to the location
                 return new Rectangle(
-                    (int)(location.X),
-                    (int)(location.Y),
+                    (int)location.X,
+                    (int)location.Y,
                     boundsWidth,
                     boundsHeight);
             }

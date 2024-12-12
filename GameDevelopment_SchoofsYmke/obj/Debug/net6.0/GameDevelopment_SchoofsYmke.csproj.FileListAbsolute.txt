@@ -33,3 +33,9 @@ C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\HeroSprite.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Level1-Deco.txt
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\DecoTiles.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\1.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\2.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\3.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\4.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\5.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Spider.xnb

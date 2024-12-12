@@ -13,22 +13,30 @@ namespace GameDevelopment_SchoofsYmke.Map
     internal class LevelManager
     {
         private readonly Dictionary<string, TileMap> levels;
+        private readonly Dictionary<string, List<(string texturePath, float depth, float moveScale)>> levelBackgroundConfigs;
+
         private TileMap currentLevel;
         private List<ICollidable> collidables;
-        
+
         public LevelManager()
         {
             levels = new Dictionary<string, TileMap>();
+            levelBackgroundConfigs = new Dictionary<string, List<(string texturePath, float depth, float moveScale)>>();
+
             collidables = new List<ICollidable>();
         }
 
         public TileMap Currentlevel => currentLevel;
         public IEnumerable<ICollidable> Collidables => collidables;
-
         public Point MapSize => currentLevel.MapSize;
 
-        public void LoadLevel(ContentManager content, 
-            string levelId, string mapFilePath,string decoFilePath, string tilesheetPath, string decosheetPath)
+        public void AddBackgroundConfig(string levelId, List<(string texturePath, float depth, float moveScale)> backgroundConfig)
+        {
+            levelBackgroundConfigs[levelId] = backgroundConfig;
+        }
+
+        public void LoadLevel(ContentManager content,
+            string levelId, string mapFilePath, string decoFilePath, string tilesheetPath, string decosheetPath)
         {
             if (!levels.ContainsKey(levelId))
             {

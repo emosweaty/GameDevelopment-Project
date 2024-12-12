@@ -1,4 +1,4 @@
-﻿using GameDevelopment_SchoofsYmke.Blocks;
+﻿using GameDevelopment_SchoofsYmke.Characters;
 using GameDevelopment_SchoofsYmke.Display;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace GameDevelopment_SchoofsYmke
@@ -17,9 +16,13 @@ namespace GameDevelopment_SchoofsYmke
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
+        private Texture2D enemyTexture;
         private Texture2D screen;
+        private Color color;
 
         private Hero hero;
+        private Enemy enemy;
+        
         private DisplayManager display;
         private LevelManager level;
         private CollisionManager movement;
@@ -36,6 +39,8 @@ namespace GameDevelopment_SchoofsYmke
             display = new DisplayManager(_graphics);
             level = new LevelManager();
             camera = new CameraManager();
+
+           // bgm.AddLayer(new(Content.Load<Texture2D>("1"), 0, 0f, 0.0f));
         }
 
         protected override void Initialize()
@@ -57,16 +62,19 @@ namespace GameDevelopment_SchoofsYmke
 
             screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("HeroSprite");
+            enemyTexture = Content.Load<Texture2D>("Spider");
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             hero = new Hero(texture);
+            enemy = new Enemy(enemyTexture, new Vector2(300, 400), 100);
+
             int screenWidth = display.ScreenWidth;
             int screenHeight = display.ScreenHeight;
             movement = new CollisionManager(new List<ICollidable>(collidables){ hero }, level.MapSize, display.ScreenHeight);
 
-            
+            color = new Color(50, 25, 51, 255);
 
             hero.SetMovementManager(movement);
         }
@@ -83,8 +91,9 @@ namespace GameDevelopment_SchoofsYmke
                     movement.IsDead = false;
                 }
             }
-
+            
             hero.Update(gameTime);
+            enemy.Update(gameTime);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
@@ -92,11 +101,12 @@ namespace GameDevelopment_SchoofsYmke
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkSlateBlue);
+            GraphicsDevice.Clear(color);
 
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
+            enemy.Draw(_spriteBatch);
 
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;

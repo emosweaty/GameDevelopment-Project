@@ -1,4 +1,5 @@
-﻿using GameDevelopment_SchoofsYmke.Display;
+﻿using GameDevelopment_SchoofsYmke.Characters;
+using GameDevelopment_SchoofsYmke.Display;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
             dx = MathHelper.Clamp(dx, -mapSize.X + screenWidth + (64 / 2), 64 / 2);
             var dy = (screenHeight / 2) - hero.location.Y;
             dy = MathHelper.Clamp(dy, -mapSize.Y + screenHeight + (64 / 2), 64 / 2);
-            translation = Matrix.CreateTranslation(dx, dy, 0f);
+            translation = Matrix.CreateTranslation(dx, dy + 350, 0f);
         }
 
        public Matrix getTranslation()
