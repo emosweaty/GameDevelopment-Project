@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Animation
 {
-    public enum AnimationState { Moving, Jumping, Idle}
+    public enum AnimationState { Moving, Jumping, Idle, Attack1, Attack2, Attack3}
     public class Animatie
     {
         public AnimationFrame CurrentFrame { get; set; }
         private Dictionary<AnimationState, (int startFrame, int frameCount)> animations;
         private List<AnimationFrame> allFrames;
         private AnimationState currentState;
+        public AnimationState CurrentState => currentState;
         private int currentRow;
         private int framesPerRow;
         private int extraFrames;
@@ -25,6 +26,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
         {
             animations = new Dictionary<AnimationState, (int startFrame, int frameCount)>();
             allFrames = new List<AnimationFrame>();
+            CurrentFrame = null;
         }
         public void SetAnimationState(AnimationState state)
         {
@@ -56,7 +58,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
         }
 
         public void GetFramesFromTexture
-            (int width, int height, int numberOfWidthSprites, int numberOfHeightsprites)
+            (int width, int height, int numberOfWidthSprites, int numberOfHeightsprites, string characterType)
         {
             allFrames.Clear();
 
@@ -67,15 +69,34 @@ namespace GameDevelopment_SchoofsYmke.Animation
             {
                 for (int x = 0; x < width; x += widthOfFrame)
                 {
-                    allFrames.Add(new AnimationFrame(new Rectangle(x, y, widthOfFrame, heightOfFrame)));
+                     allFrames.Add(new AnimationFrame(new Rectangle(x, y, widthOfFrame, heightOfFrame)));
                 }
             }
+            Debug.WriteLine($"Total frames added: {allFrames.Count} + {characterType}");
+            CurrentFrame = allFrames.FirstOrDefault();
 
-            animations[AnimationState.Moving] = (13, 9);
-            animations[AnimationState.Idle] = (0, 8);
-            animations[AnimationState.Jumping] = (65, 12); 
+            if (characterType == "hero")
+            {
+                animations[AnimationState.Moving] = (13, 9);
+                animations[AnimationState.Idle] = (0, 8);
+                animations[AnimationState.Jumping] = (65, 12);
+            }
+            else if (characterType == "loader")
+            {
+                animations[AnimationState.Moving] = (48, 4); 
+                animations[AnimationState.Idle] = (36, 4);
+                animations[AnimationState.Attack1] = (0, 6);
+                                                           
+            }
+        }
+        public bool IsAnimationComplete()
+        {
+            var (_, frameCount) = animations[currentState]; 
+            return counter >= frameCount; 
         }
 
+
+
     }
-    
+
 }

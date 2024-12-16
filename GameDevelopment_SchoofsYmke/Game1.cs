@@ -21,12 +21,13 @@ namespace GameDevelopment_SchoofsYmke
         private Color color;
 
         private Hero hero;
-        private Enemy enemy;
+        //private Enemy enemy;
         
         private DisplayManager display;
         private LevelManager level;
         private CollisionManager movement;
         private CameraManager camera;
+        private EnemyManager enemy;
 
         //Voor debuggen (Bounds)
         //private Texture2D blokTexture;
@@ -39,8 +40,7 @@ namespace GameDevelopment_SchoofsYmke
             display = new DisplayManager(_graphics);
             level = new LevelManager();
             camera = new CameraManager();
-
-           // bgm.AddLayer(new(Content.Load<Texture2D>("1"), 0, 0f, 0.0f));
+            enemy = new EnemyManager();
         }
 
         protected override void Initialize()
@@ -62,13 +62,14 @@ namespace GameDevelopment_SchoofsYmke
 
             screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("HeroSprite");
-            enemyTexture = Content.Load<Texture2D>("Spider");
+            enemyTexture = Content.Load<Texture2D>("Enemies/Loader");
+
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             hero = new Hero(texture);
-            enemy = new Enemy(enemyTexture, new Vector2(300, 400), 100);
+            
 
             int screenWidth = display.ScreenWidth;
             int screenHeight = display.ScreenHeight;
@@ -77,6 +78,11 @@ namespace GameDevelopment_SchoofsYmke
             color = new Color(50, 25, 51, 255);
 
             hero.SetMovementManager(movement);
+
+            var enemyConfigs = LevelEnemyConfig.GetConfig("Level1");
+            enemy.InitializeEnemies(enemyConfigs.Select(config =>
+                (enemyTexture, config.position, config.speed, config.viewRange)));
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -93,7 +99,7 @@ namespace GameDevelopment_SchoofsYmke
             }
             
             hero.Update(gameTime);
-            enemy.Update(gameTime);
+            enemy.Update(gameTime, hero.location);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
@@ -105,9 +111,8 @@ namespace GameDevelopment_SchoofsYmke
 
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
-            hero.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);
-
+            hero.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
             //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);

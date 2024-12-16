@@ -47,7 +47,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
             CurrentState = AnimationState.Idle;
 
             animation = new Animatie();
-            animation.GetFramesFromTexture(texture.Width, texture.Height, 13, 8);
+            animation.GetFramesFromTexture(texture.Width, texture.Height, 13, 8, "hero");
 
             location = new Vector2(40, 700);
             positionOffset = new Vector2(-100, -60);
