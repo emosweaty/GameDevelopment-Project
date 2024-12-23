@@ -31,9 +31,6 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private IInputReader inputReader;
         private CollisionManager collision;
 
-        private const int boundsWidth = 65;
-        private const int boundsHeight = 110;
-
         public bool IsOnGround { get; private set; }
         public bool IsMoving { get; set; }
         public bool IsJumping { get; set; }
@@ -53,11 +50,6 @@ namespace GameDevelopment_SchoofsYmke.Characters
             positionOffset = new Vector2(-100, -60);
 
             speed = new Vector2(10, 1);
-
-            //int boundsWidth = 100;
-            //int boundsHeight = 150;
-            //offsetBounds = new Vector2((texture.Width / 13 - boundsWidth) / 2, (texture.Height / 8 - boundsHeight) / 2);
-            //bounds = new Rectangle(location.ToPoint() + offsetBounds.ToPoint(), new Point(boundsWidth, boundsHeight));
 
             IsOnGround = location.Y >= 900f;
 
@@ -141,8 +133,8 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 return new Rectangle(
                     (int)location.X,
                     (int)location.Y,
-                    boundsWidth,
-                    boundsHeight);
+                    65,
+                    110);
             }
         }
 

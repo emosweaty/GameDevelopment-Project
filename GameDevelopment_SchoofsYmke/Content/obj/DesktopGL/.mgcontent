@@ -4,7 +4,6 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/../../../Afbeeldingen/Fantasy_29_2/Loader.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/1.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/2.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/3.png</File>
@@ -12,6 +11,7 @@
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/5.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/DeadScreen.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/DecoTiles.png</File>
+    <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Loader.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/HeroSprite.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/player run.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Spider.png</File>
@@ -19,7 +19,7 @@
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Tiles.png</File>
   </SourceFiles>
   <DestFiles>
-    <File>Enemies/Loader.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

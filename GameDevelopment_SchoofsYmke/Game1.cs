@@ -30,7 +30,7 @@ namespace GameDevelopment_SchoofsYmke
         private EnemyManager enemy;
 
         //Voor debuggen (Bounds)
-        //private Texture2D blokTexture;
+        private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -57,8 +57,8 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            //blokTexture.SetData(new[] { Color.White });
+            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("HeroSprite");
@@ -73,7 +73,7 @@ namespace GameDevelopment_SchoofsYmke
 
             int screenWidth = display.ScreenWidth;
             int screenHeight = display.ScreenHeight;
-            movement = new CollisionManager(new List<ICollidable>(collidables){ hero }, level.MapSize, display.ScreenHeight);
+            movement = new CollisionManager(new List<ICollidable>(collidables){ hero, enemy }, level.MapSize, display.ScreenHeight);
 
             color = new Color(50, 25, 51, 255);
 
@@ -99,7 +99,7 @@ namespace GameDevelopment_SchoofsYmke
             }
             
             hero.Update(gameTime);
-            enemy.Update(gameTime, hero.location);
+            enemy.Update(gameTime, hero.location, hero);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
@@ -115,7 +115,13 @@ namespace GameDevelopment_SchoofsYmke
             hero.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
-            //_spriteBatch.Draw(blokTexture, heroBounds, Color.Red * 0.5f);
+
+            foreach (var enemyBounds in enemy.GetEnemyBounds())
+            {
+                _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f); // Draw translucent red rectangle
+            }
+
+           // _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
 
             if (movement.IsDead)
             {

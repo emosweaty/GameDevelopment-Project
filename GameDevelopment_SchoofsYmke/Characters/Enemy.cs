@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace GameDevelopment_SchoofsYmke.Characters
 {
-    internal class Enemy 
+    internal class Enemy : ICollidable
     {
         private Animatie animation;
         private Texture2D texture;
@@ -20,8 +22,13 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private Vector2 direction;
         private float viewRange;
         private float speed;
-        private int attackCooldown= 20; 
-        public Rectangle Bounds => new Rectangle((int)position.X, (int)position.Y, 64, 64);
+        private float lastDirectionX = 1;
+        private double elapsedTimeCounter = 0; 
+        private double attackDuration = 50;
+
+        public Rectangle Bounds => new Rectangle((int)position.X + 60, (int)position.Y+80, 120, 140);
+
+        public bool IsSolid => true;
 
         public Enemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
         {
@@ -35,62 +42,59 @@ namespace GameDevelopment_SchoofsYmke.Characters
             animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Update(GameTime gameTime, Vector2 heroPosition)
+        public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero)
         {
             float distanceToHero = Vector2.Distance(heroPosition, position);
-
+            elapsedTimeCounter--;
 
             if (distanceToHero <= viewRange)
             {
+                var target = heroPosition.X;
                 direction.X = Math.Sign(heroPosition.X - position.X);
-
-                if (direction.X > 0) { animation.CurrentFrame.SpriteEffect = SpriteEffects.None; }
-                else if(direction.X < 0) { animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally; }
-
-                if (distanceToHero > 200)
+                
+                if (Bounds.Intersects(hero.Bounds))
                 {
 
-                    animation.SetAnimationState(AnimationState.Moving);
-                    position.X += direction.X * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    direction.X = 0;
+
+                    if(elapsedTimeCounter <= 0)
+                    {
+                        elapsedTimeCounter = attackDuration;
+
+                    }
+                    else if (elapsedTimeCounter <= 20 )
+                    {
+                        animation.SetAnimationState(AnimationState.Idle);
+
+                    }
+                    else if (elapsedTimeCounter > 20)
+                    {
+                        animation.SetAnimationState(AnimationState.Attack1);
+                    }
+
                 }
                 else
                 {
-                    direction.X = 0;
-
-                    if (attackCooldown ==  20 )
-                    {
-                        animation.SetAnimationState(AnimationState.Attack1);
-                        attackCooldown = 0;
-                    }
-                    //else
-                    //{
-                    //    animation.SetAnimationState(AnimationState.Idle);
-                    //}
-                    
-
-
+                    animation.SetAnimationState(AnimationState.Moving);
+                    position.X = MathHelper.Lerp(position.X, target, 0.015f);
 
                 }
-            }   
+            }
             else
             {
                 animation.SetAnimationState(AnimationState.Idle);
+
             }
-
-            //if (attackCooldown > 5)
-            //{
-            //    attackCooldown += 1;
-            //    Debug.WriteLine($"Attack Cooldown: {attackCooldown:F2} seconds");
-            //}
-
-            while (attackCooldown > 20)
-            {
-                attackCooldown++;
-                    Debug.WriteLine($"Attack Cooldown: {attackCooldown:F2} seconds");
-                
-            }
-
             animation.Update(gameTime);
+
+            if (direction.X != 0)
+            {
+                lastDirectionX = direction.X;
+            }
+
+            if (lastDirectionX > 0){animation.CurrentFrame.SpriteEffect = SpriteEffects.None;}
+            else if (lastDirectionX < 0){animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;}
+
         }
 
         public void Draw(SpriteBatch sprite)
@@ -98,32 +102,10 @@ namespace GameDevelopment_SchoofsYmke.Characters
             sprite.Draw(texture, position, animation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, animation.CurrentFrame.SpriteEffect, 0f);
         }
 
-
-        //private void UpdateCooldown(GameTime gameTime)
-        //{
-        //    if (attackCooldown > 0.0)
-        //    {
-        //        attackCooldown -= gameTime.ElapsedGameTime.TotalSeconds; // Count down
-        //    }
-        //}
-
-        private void counter()
+        public bool CollidesWith(ICollidable other)
         {
-            while (attackCooldown > 5)
-            {
-                attackCooldown++;
-                Debug.WriteLine($"Attack Cooldown: {attackCooldown:F2} seconds");
-            }
-         }
-
-            //private bool CanAttack()
-            //{
-            //    if (attackCooldown <= 0.0)
-            //    {
-            //        return true; // Attack is ready
-            //    }
-
-            //    return false; // Cooldown in progress
-            //}
+            return Bounds.Intersects(other.Bounds);
         }
+    }
+
 }

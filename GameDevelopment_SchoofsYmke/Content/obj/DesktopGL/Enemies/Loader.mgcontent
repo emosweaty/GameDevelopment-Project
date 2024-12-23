@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/../../../Afbeeldingen/Fantasy_29_2/Loader.png</SourceFile>
-  <SourceTime>2024-12-13T11:49:26.3118238+01:00</SourceTime>
+  <SourceFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Loader.png</SourceFile>
+  <SourceTime>2024-12-20T13:56:26.4602371+01:00</SourceTime>
   <DestFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/bin/DesktopGL/Enemies/Loader.xnb</DestFile>
-  <DestTime>2024-12-13T11:50:52.5780092+01:00</DestTime>
+  <DestTime>2024-12-20T13:57:04.6239065+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

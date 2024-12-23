@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Characters
 {
-    internal class EnemyManager 
+    internal class EnemyManager : ICollidable
     {
         private List<Enemy> enemies;
 
@@ -29,11 +29,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
             }
         }
 
-        public void Update(GameTime gameTime, Vector2 heroposition)
+        public void Update(GameTime gameTime, Vector2 heroposition, Hero hero)
         {
             foreach (var enemy in enemies)
             {
-                enemy.Update(gameTime, heroposition);
+                enemy.Update(gameTime, heroposition, hero);
             }
         }
 
@@ -45,6 +45,35 @@ namespace GameDevelopment_SchoofsYmke.Characters
             }
         }
 
+        public IEnumerable<Rectangle> GetEnemyBounds()
+        {
+            return enemies.Select(enemy => enemy.Bounds);
+        }
 
+        public Rectangle Bounds
+        {
+            get
+            {
+                if (enemies.Count > 0)
+                {
+                    return enemies[0].Bounds;
+                }
+                return Rectangle.Empty;
+            }
+        }
+
+        public bool IsSolid => true;
+
+        public bool CollidesWith(ICollidable other)
+        {
+            foreach (var enemy in enemies)
+            {
+                if (enemy.CollidesWith(other))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
