@@ -85,7 +85,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            Vector2 direction = inputReader.ReadInput(gameTime) * speed;
+            Vector2 direction = inputReader.ReadInput(gameTime);
             Vector2 adjustedMovement = collision?.CalculateNewPosition(this, direction) ?? direction;
 
             Velocity = direction * speed;
