@@ -11,7 +11,7 @@ namespace GameDevelopment_SchoofsYmke.Interfaces
     {
         Rectangle Bounds { get; }
         bool IsSolid { get; }
-
+        
         bool CollidesWith(ICollidable other);
     }
 }

@@ -1,5 +1,8 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
+using GameDevelopment_SchoofsYmke.Blocks;
 using GameDevelopment_SchoofsYmke.Interfaces;
+using GameDevelopment_SchoofsYmke.Map;
+using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pong.Interfaces;
@@ -18,7 +21,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
     {
         private Animatie animation;
         private Texture2D texture;
-        private Vector2 position;
+        public Vector2 location;
         private Vector2 direction;
         private float viewRange;
         private float speed;
@@ -26,14 +29,20 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private double elapsedTimeCounter = 0; 
         private double attackDuration = 50;
 
-        public Rectangle Bounds => new Rectangle((int)position.X + 60, (int)position.Y+80, 120, 140);
+        private float verticalVelocity = 0f;
+        private const float gravity = 0.5f;
+        private const float maxFallSpeed = 5f;
+        public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y+80, 120, 135);
 
+        public Vector2 Position => location;
+        public Vector2 Velocity => direction * speed;
+        public bool IsOnGround { get; private set; }
         public bool IsSolid => true;
 
         public Enemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
         {
             this.texture = texture;
-            position = initialPosition;
+            location = initialPosition;
             this.speed = speed;
             this.viewRange = viewRange;
 
@@ -42,15 +51,16 @@ namespace GameDevelopment_SchoofsYmke.Characters
             animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero)
+        public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero, CollisionManager collision)
         {
-            float distanceToHero = Vector2.Distance(heroPosition, position);
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            float distanceToHero = Vector2.Distance(heroPosition, location);
             elapsedTimeCounter--;
 
             if (distanceToHero <= viewRange)
             {
-                var target = heroPosition.X;
-                direction.X = Math.Sign(heroPosition.X - position.X);
+                direction.X = Math.Sign(heroPosition.X - location.X);
                 
                 if (Bounds.Intersects(hero.Bounds))
                 {
@@ -76,7 +86,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 else
                 {
                     animation.SetAnimationState(AnimationState.Moving);
-                    position.X = MathHelper.Lerp(position.X, target, 0.015f);
+                    location.X = MathHelper.Lerp(location.X, heroPosition.X , 0.015f);
 
                 }
             }
@@ -85,6 +95,23 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 animation.SetAnimationState(AnimationState.Idle);
 
             }
+
+            if (!IsOnGround)
+            {
+                verticalVelocity += gravity;
+                verticalVelocity = MathHelper.Clamp(verticalVelocity, -maxFallSpeed, maxFallSpeed);
+            }
+            else
+            {
+                verticalVelocity = 0f;
+            }
+
+            location.Y += verticalVelocity;
+
+
+            IsOnGround = collision.IsOnGround(this);
+    
+
             animation.Update(gameTime);
 
             if (direction.X != 0)
@@ -99,7 +126,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         public void Draw(SpriteBatch sprite)
         {
-            sprite.Draw(texture, position, animation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, animation.CurrentFrame.SpriteEffect, 0f);
+            sprite.Draw(texture, location, animation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, animation.CurrentFrame.SpriteEffect, 0f);
         }
 
         public bool CollidesWith(ICollidable other)

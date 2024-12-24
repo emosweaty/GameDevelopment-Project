@@ -25,14 +25,15 @@ namespace GameDevelopment_SchoofsYmke.Movement
             this.screenHeight = screenHeight;
         }
 
-        public Vector2 CalculateNewPosition(Hero hero, Vector2 direction)
+        public Vector2 CalculateNewPosition(ICollidable entity, Vector2 direction)
         {
-            Vector2 newPosition = hero.location + direction;
+            Rectangle dynamicBounds = entity.Bounds;
+            Vector2 newPosition = new Vector2(dynamicBounds.X, dynamicBounds.Y) + direction;
             Vector2 spawnPoint = new Vector2(0,900);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
-                hero.Bounds.Width, hero.Bounds.Height);
+                entity.Bounds.Width, entity.Bounds.Height);
              
 
             foreach (var collidable in collidables)
@@ -45,16 +46,16 @@ namespace GameDevelopment_SchoofsYmke.Movement
                 if (newBounds.Intersects(collidable.Bounds))
                 {
                     if (newBounds.Bottom >= collidableBounds.Top &&
-                        hero.Bounds.Bottom <= collidableBounds.Top + 20 && 
+                        entity.Bounds.Bottom <= collidableBounds.Top + 20 && 
                         newBounds.Right > collidableBounds.Left &&
                         newBounds.Left < collidableBounds.Right)
                     {
                         direction.Y = 0;
-                        newPosition.Y = collidableBounds.Top - hero.Bounds.Height;
+                        newPosition.Y = collidableBounds.Top - entity.Bounds.Height;
                     }
 
                     if (newBounds.Top < collidableBounds.Bottom &&
-                        hero.Bounds.Top >= collidableBounds.Bottom &&
+                        entity.Bounds.Top >= collidableBounds.Bottom &&
                         newBounds.Right > collidableBounds.Left &&
                         newBounds.Left < collidableBounds.Right)
                     {
@@ -63,14 +64,14 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     }
 
                     if (newBounds.Right > collidableBounds.Left &&
-                        hero.Bounds.Right <= collidableBounds.Left &&
+                        entity.Bounds.Right <= collidableBounds.Left &&
                         newBounds.Bottom > collidableBounds.Top + 28)
                     {
                         direction.X = 0;
-                        newPosition.X = collidableBounds.Left - hero.Bounds.Width;
+                        newPosition.X = collidableBounds.Left - entity.Bounds.Width;
                     }
                     else if (newBounds.Left < collidableBounds.Right &&
-                             hero.Bounds.Left >= collidableBounds.Right &&
+                             entity.Bounds.Left >= collidableBounds.Right &&
                              newBounds.Bottom > collidableBounds.Top + 20)
                     {
                         direction.X = 0;
@@ -83,13 +84,13 @@ namespace GameDevelopment_SchoofsYmke.Movement
                         newPosition.X = 0;
                         direction.X = 0;
                     }
-                    else if (newPosition.X + hero.Bounds.Width > screenWidth.X)
+                    else if (newPosition.X + entity.Bounds.Width > screenWidth.X)
                     {
                         newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
                         direction.X = 0;
                     }
 
-                    if (newPosition.Y + hero.Bounds.Height >= screenHeight)
+                    if (newPosition.Y + entity.Bounds.Height >= screenHeight)
                     {
                         newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
                         direction = Vector2.Zero;
@@ -97,13 +98,20 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     }
                 }
             }
-            hero.location = newPosition;
+            if (entity is Hero hero)
+            {
+                hero.location = newPosition;
+            }
+            else if (entity is Enemy enemy)
+            {
+                enemy.location = newPosition;
+            }
             return direction;
         }
 
-        public bool IsOnGround(Hero hero)
+        public bool IsOnGround(ICollidable entity)
         {
-            var heroBounds = hero.Bounds;
+            var heroBounds = entity.Bounds;
 
             foreach (var obj in collidables)
             {

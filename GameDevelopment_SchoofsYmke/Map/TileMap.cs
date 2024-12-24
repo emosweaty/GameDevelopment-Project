@@ -18,7 +18,7 @@ namespace GameDevelopment_SchoofsYmke.Map
         private List<DecoTile> decoTiles;
         private Texture2D tilesheet;
         private Texture2D decosheet;
-        private readonly HashSet<int> solidTileValues = new() { 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 16, 17, 18, 19, 21, 24, 25, 26, 28, 29, 35, 49};
+        private readonly HashSet<int> solidTileValues = new() { 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18, 19, 21, 24, 25, 26, 28, 29, 35, 49};
         private readonly HashSet<int> solidDecoTileValues = new() { 2, 3, 4, 5, 6, 7, 21, 22, 23, 24, 25};
         public Point MapSize { get; private set; }
         public TileMap()

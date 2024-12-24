@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Interfaces;
+using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,11 +30,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
             }
         }
 
-        public void Update(GameTime gameTime, Vector2 heroposition, Hero hero)
+        public void Update(GameTime gameTime, Vector2 heroposition, Hero hero, CollisionManager collision)
         {
             foreach (var enemy in enemies)
             {
-                enemy.Update(gameTime, heroposition, hero);
+                enemy.Update(gameTime, heroposition, hero, collision);
             }
         }
 

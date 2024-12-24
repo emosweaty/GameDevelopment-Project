@@ -97,9 +97,9 @@ namespace GameDevelopment_SchoofsYmke
                     movement.IsDead = false;
                 }
             }
-            
+
             hero.Update(gameTime);
-            enemy.Update(gameTime, hero.location, hero);
+            enemy.Update(gameTime, hero.location, hero, movement);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
