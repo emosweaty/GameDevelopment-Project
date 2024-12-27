@@ -21,7 +21,7 @@ namespace GameDevelopment_SchoofsYmke.Blocks
         {
             BoundingBox = new Rectangle(x, y, 10, 10);
             Passable = false;
-            Color = Color.Pink;
+            Color = Color.White;
             Texture = new Texture2D(graphics, 1, 1);
         }
         public void Draw(SpriteBatch sprite)

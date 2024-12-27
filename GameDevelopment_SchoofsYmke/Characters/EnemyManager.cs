@@ -63,8 +63,17 @@ namespace GameDevelopment_SchoofsYmke.Characters
             }
         }
 
-        public bool IsSolid => true;
-
+        public bool IsSolid
+        {
+            get
+            {
+                foreach (var enemy in enemies)
+                {
+                    return enemy.IsSolid;
+                }
+                return false;
+            }
+        }
         public bool CollidesWith(ICollidable other)
         {
             foreach (var enemy in enemies)

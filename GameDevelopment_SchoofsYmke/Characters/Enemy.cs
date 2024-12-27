@@ -13,7 +13,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
+
 
 namespace GameDevelopment_SchoofsYmke.Characters
 {
@@ -33,11 +33,8 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private const float gravity = 0.5f;
         private const float maxFallSpeed = 5f;
         public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y+80, 120, 135);
-
-        public Vector2 Position => location;
-        public Vector2 Velocity => direction * speed;
         public bool IsOnGround { get; private set; }
-        public bool IsSolid => true;
+        public bool IsSolid => false;
 
         public Enemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
         {
@@ -53,75 +50,58 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero, CollisionManager collision)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             float distanceToHero = Vector2.Distance(heroPosition, location);
+
             elapsedTimeCounter--;
+
+            Vector2 movement = Vector2.Zero;
 
             if (distanceToHero <= viewRange)
             {
                 direction.X = Math.Sign(heroPosition.X - location.X);
-                
+
                 if (Bounds.Intersects(hero.Bounds))
                 {
-
                     direction.X = 0;
 
-                    if(elapsedTimeCounter <= 0)
-                    {
-                        elapsedTimeCounter = attackDuration;
+                    if (elapsedTimeCounter <= 0) elapsedTimeCounter = attackDuration;
 
-                    }
-                    else if (elapsedTimeCounter <= 20 )
-                    {
-                        animation.SetAnimationState(AnimationState.Idle);
+                    else if (elapsedTimeCounter <= 20) animation.SetAnimationState(AnimationState.Idle);
 
-                    }
-                    else if (elapsedTimeCounter > 20)
-                    {
-                        animation.SetAnimationState(AnimationState.Attack1);
-                    }
-
+                    else if (elapsedTimeCounter > 20) animation.SetAnimationState(AnimationState.Attack1);
                 }
                 else
                 {
                     animation.SetAnimationState(AnimationState.Moving);
-                    location.X = MathHelper.Lerp(location.X, heroPosition.X , 0.015f);
-
+                    movement.X = direction.X * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
             }
-            else
-            {
-                animation.SetAnimationState(AnimationState.Idle);
+            else animation.SetAnimationState(AnimationState.Idle);
 
-            }
-
-            if (!IsOnGround)
+            if (!collision.IsOnGround(this))
             {
-                verticalVelocity += gravity;
+                verticalVelocity += gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 verticalVelocity = MathHelper.Clamp(verticalVelocity, -maxFallSpeed, maxFallSpeed);
             }
-            else
-            {
-                verticalVelocity = 0f;
-            }
 
-            location.Y += verticalVelocity;
+            if (collision.IsOnGround(this)) verticalVelocity = 0f;
 
+            movement.Y += verticalVelocity;
+
+            Vector2 resolvedMovement = collision.CalculateNewPosition(this, movement);
+
+            location.X += resolvedMovement.X;
+            location.Y += resolvedMovement.Y;
 
             IsOnGround = collision.IsOnGround(this);
-    
 
             animation.Update(gameTime);
 
-            if (direction.X != 0)
-            {
-                lastDirectionX = direction.X;
-            }
+            if (direction.X != 0) lastDirectionX = direction.X;
+          
+            if (lastDirectionX > 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.None;
 
-            if (lastDirectionX > 0){animation.CurrentFrame.SpriteEffect = SpriteEffects.None;}
-            else if (lastDirectionX < 0){animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;}
-
+            else if (lastDirectionX < 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;
         }
 
         public void Draw(SpriteBatch sprite)

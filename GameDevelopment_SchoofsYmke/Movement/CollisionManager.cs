@@ -29,12 +29,12 @@ namespace GameDevelopment_SchoofsYmke.Movement
         {
             Rectangle dynamicBounds = entity.Bounds;
             Vector2 newPosition = new Vector2(dynamicBounds.X, dynamicBounds.Y) + direction;
-            Vector2 spawnPoint = new Vector2(0,900);
+            Vector2 spawnPoint = new Vector2(0, 900);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
                 entity.Bounds.Width, entity.Bounds.Height);
-             
+
 
             foreach (var collidable in collidables)
             {
@@ -46,7 +46,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
                 if (newBounds.Intersects(collidable.Bounds))
                 {
                     if (newBounds.Bottom >= collidableBounds.Top &&
-                        entity.Bounds.Bottom <= collidableBounds.Top + 20 && 
+                        entity.Bounds.Bottom <= collidableBounds.Top + 20 &&
                         newBounds.Right > collidableBounds.Left &&
                         newBounds.Left < collidableBounds.Right)
                     {
@@ -102,12 +102,8 @@ namespace GameDevelopment_SchoofsYmke.Movement
             {
                 hero.location = newPosition;
             }
-            else if (entity is Enemy enemy)
-            {
-                enemy.location = newPosition;
-            }
             return direction;
-        }
+            }
 
         public bool IsOnGround(ICollidable entity)
         {
@@ -119,9 +115,9 @@ namespace GameDevelopment_SchoofsYmke.Movement
 
                 var objectBounds = obj.Bounds;
 
-                if (heroBounds.Bottom >= objectBounds.Top -5 &&
-                heroBounds.Bottom <= objectBounds.Top +5 &&
-                heroBounds.Right > objectBounds.Left &&  
+                if (heroBounds.Bottom >= objectBounds.Top - 5 &&
+                heroBounds.Bottom <= objectBounds.Top + 5 &&
+                heroBounds.Right > objectBounds.Left &&
                 heroBounds.Left < objectBounds.Right)
                 {
                     return true;
@@ -131,4 +127,6 @@ namespace GameDevelopment_SchoofsYmke.Movement
         }
 
     }
+
 }
+
