@@ -3,6 +3,7 @@ using GameDevelopment_SchoofsYmke.Blocks;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
 using GameDevelopment_SchoofsYmke.Movement;
+using GameDevelopment_SchoofsYmke.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pong.Interfaces;
@@ -32,6 +33,10 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private float verticalVelocity = 0f;
         private const float gravity = 0.5f;
         private const float maxFallSpeed = 5f;
+
+        private float shootingCooldown = 1.5f;
+        private float timeSinceLastShot = 0.0f;
+
         public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y+80, 120, 135);
         public bool IsOnGround { get; private set; }
         public bool IsSolid => false;
@@ -48,7 +53,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
             animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero, CollisionManager collision)
+        public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero, CollisionManager collision, ProjectileManager projectile)
         {
             float distanceToHero = Vector2.Distance(heroPosition, location);
 
@@ -74,6 +79,13 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 {
                     animation.SetAnimationState(AnimationState.Moving);
                     movement.X = direction.X * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+
+                timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (timeSinceLastShot >= shootingCooldown)
+                {
+                    Shoot(heroPosition, projectile);
+                    timeSinceLastShot = 0.0f;
                 }
             }
             else animation.SetAnimationState(AnimationState.Idle);
@@ -102,6 +114,13 @@ namespace GameDevelopment_SchoofsYmke.Characters
             if (lastDirectionX > 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.None;
 
             else if (lastDirectionX < 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;
+        }
+
+        public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
+        {
+            Vector2 direction = Vector2.Normalize(heroPosition - location);
+            projectile.AddProjectile(location, direction, 400f);
+           // Debug.WriteLine("Shoot");
         }
 
         public void Draw(SpriteBatch sprite)

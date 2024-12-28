@@ -3,6 +3,7 @@ using GameDevelopment_SchoofsYmke.Display;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
 using GameDevelopment_SchoofsYmke.Movement;
+using GameDevelopment_SchoofsYmke.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,20 +18,20 @@ namespace GameDevelopment_SchoofsYmke
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
         private Texture2D enemyTexture;
+        private Texture2D projectileTexture;
         private Texture2D screen;
         private Color color;
 
         private Hero hero;
-        //private Enemy enemy;
-        
         private DisplayManager display;
         private LevelManager level;
         private CollisionManager movement;
         private CameraManager camera;
         private EnemyManager enemy;
+        private ProjectileManager projectile;
 
         //Voor debuggen (Bounds)
-        private Texture2D blokTexture;
+        //private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -40,7 +41,6 @@ namespace GameDevelopment_SchoofsYmke
             display = new DisplayManager(_graphics);
             level = new LevelManager();
             camera = new CameraManager();
-            enemy = new EnemyManager();
         }
 
         protected override void Initialize()
@@ -57,18 +57,21 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            blokTexture.SetData(new[] { Color.White });
+            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            //blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
             texture = Content.Load<Texture2D>("HeroSprite");
             enemyTexture = Content.Load<Texture2D>("Enemies/Loader");
+            projectileTexture = Content.Load<Texture2D>("Enemies/Box");
 
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
 
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             hero = new Hero(texture);
+            projectile = new ProjectileManager(projectileTexture);
+            enemy = new EnemyManager(projectile);
             
 
             int screenWidth = display.ScreenWidth;
@@ -100,6 +103,7 @@ namespace GameDevelopment_SchoofsYmke
 
             hero.Update(gameTime);
             enemy.Update(gameTime, hero.location, hero, movement);
+            projectile.Update(gameTime, level.MapSize);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
@@ -111,15 +115,16 @@ namespace GameDevelopment_SchoofsYmke
 
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
+            projectile.Draw(_spriteBatch, projectileTexture);
             enemy.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
 
-            foreach (var enemyBounds in enemy.GetEnemyBounds())
-            {
-                _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f); // Draw translucent red rectangle
-            }
+            //foreach (var enemyBounds in enemy.GetEnemyBounds())
+            //{
+            //    _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f); // Draw translucent red rectangle
+            //}
 
            // _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
 

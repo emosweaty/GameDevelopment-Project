@@ -1,5 +1,6 @@
 ﻿using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
+using GameDevelopment_SchoofsYmke.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,10 +15,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
     internal class EnemyManager : ICollidable
     {
         private List<Enemy> enemies;
-
-        public EnemyManager()
+        private ProjectileManager projectile;
+        public EnemyManager(ProjectileManager projectile)
         {
             enemies = new List<Enemy>();
+            this.projectile = projectile;
         }
 
         public void InitializeEnemies(IEnumerable<(Texture2D texture, Vector2 position, float speed, float viewRange)> enemyConfig)
@@ -34,7 +36,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
         {
             foreach (var enemy in enemies)
             {
-                enemy.Update(gameTime, heroposition, hero, collision);
+                enemy.Update(gameTime, heroposition, hero, collision, projectile);
             }
         }
 
