@@ -19,12 +19,10 @@ namespace GameDevelopment_SchoofsYmke.Map
 
         private TileMap currentLevel;
         private List<ICollidable> collidables;
-        private EnemyManager enemy;
 
         public LevelManager()
         {
-            levels = new Dictionary<string, TileMap>();
-            enemy = new EnemyManager();
+            levels = new Dictionary<string, TileMap>();;
             collidables = new List<ICollidable>();
         }
 
@@ -45,17 +43,6 @@ namespace GameDevelopment_SchoofsYmke.Map
             }
             currentLevel = levels[levelId];
             collidables = currentLevel.GetCollidableObjects().ToList();
-
-            var enemyConfig = LevelEnemyConfig.GetConfig(levelId);
-            var initializedEnemies = new List<(Texture2D, Vector2, float, float)>();
-
-            foreach (var (texturePath, position, speed, viewRange) in enemyConfig)
-            {
-                Texture2D texture = content.Load<Texture2D>(texturePath);
-                initializedEnemies.Add((texture, position, speed, viewRange));
-            }
-
-            enemy.InitializeEnemies(initializedEnemies);
         }
 
     }
