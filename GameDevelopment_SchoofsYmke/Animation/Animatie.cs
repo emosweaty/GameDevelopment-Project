@@ -75,18 +75,21 @@ namespace GameDevelopment_SchoofsYmke.Animation
             Debug.WriteLine($"Total frames added: {allFrames.Count} + {characterType}");
             CurrentFrame = allFrames.FirstOrDefault();
 
-            if (characterType == "hero")
+            switch (characterType)
             {
-                animations[AnimationState.Moving] = (13, 9);
-                animations[AnimationState.Idle] = (0, 8);
-                animations[AnimationState.Jumping] = (65, 12);
-            }
-            else if (characterType == "loader")
-            {
-                animations[AnimationState.Moving] = (48, 4); 
-                animations[AnimationState.Idle] = (36, 4);
-                animations[AnimationState.Attack1] = (0, 6);
-                                                           
+                case "hero":
+                    animations[AnimationState.Moving] = (13, 9);
+                    animations[AnimationState.Idle] = (0, 8);
+                    animations[AnimationState.Jumping] = (65, 12);
+                    break;
+                case "loader":
+                    animations[AnimationState.Moving] = (48, 4);
+                    animations[AnimationState.Idle] = (36, 4);
+                    animations[AnimationState.Attack1] = (0, 6);
+                    break;
+                case "projectile":
+                    animations[AnimationState.Idle] = (0, 6);
+                    break;
             }
         }
         public bool IsAnimationComplete()
