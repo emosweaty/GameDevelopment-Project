@@ -14,11 +14,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
 {
     internal class EnemyManager : ICollidable
     {
-        private List<Enemy> enemies;
+        private List<LoaderEnemy> enemies;
         private ProjectileManager projectile;
         public EnemyManager(ProjectileManager projectile)
         {
-            enemies = new List<Enemy>();
+            enemies = new List<LoaderEnemy>();
             this.projectile = projectile;
         }
 
@@ -27,16 +27,16 @@ namespace GameDevelopment_SchoofsYmke.Characters
             enemies.Clear();
             foreach (var config in enemyConfig)
             {
-                var enemy = new Enemy(config.texture, config.position, config.speed, config.viewRange);
+                var enemy = new LoaderEnemy(config.texture, config.position, config.speed, config.viewRange);
                 enemies.Add(enemy);
             }
         }
 
-        public void Update(GameTime gameTime, Vector2 heroposition, Hero hero, CollisionManager collision)
+        public void Update(GameTime gameTime, Hero hero, CollisionManager collision)
         {
             foreach (var enemy in enemies)
             {
-                enemy.Update(gameTime, heroposition, hero, collision, projectile);
+                enemy.Update(gameTime, hero, collision, projectile);
             }
         }
 

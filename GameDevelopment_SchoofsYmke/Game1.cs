@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace GameDevelopment_SchoofsYmke
@@ -16,11 +17,13 @@ namespace GameDevelopment_SchoofsYmke
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Color color;
+
+        private Texture2D screen;
         private Texture2D texture;
         private Texture2D enemyTexture;
         private Texture2D projectileTexture;
-        private Texture2D screen;
-        private Color color;
+        private Texture2D healthBarTexture;
 
         private Hero hero;
         private DisplayManager display;
@@ -31,7 +34,7 @@ namespace GameDevelopment_SchoofsYmke
         private ProjectileManager projectile;
 
         //Voor debuggen (Bounds)
-        //private Texture2D blokTexture;
+        private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -57,10 +60,11 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            //blokTexture.SetData(new[] { Color.White });
+            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            blokTexture.SetData(new[] { Color.White });
 
             screen = Content.Load<Texture2D>("DeadScreen");
+            healthBarTexture = Content.Load<Texture2D>("GUI/LifeBar");
             texture = Content.Load<Texture2D>("HeroSprite");
             enemyTexture = Content.Load<Texture2D>("Enemies/Loader");
             projectileTexture = Content.Load<Texture2D>("Enemies/Box");
@@ -100,10 +104,9 @@ namespace GameDevelopment_SchoofsYmke
 
             hero.Update(gameTime);
             projectile.Update(gameTime, hero,level.MapSize, display.ScreenHeight);
-            enemy.Update(gameTime, hero.location, hero, movement);
+            enemy.Update(gameTime, hero, movement);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
-            
         }
 
         protected override void Draw(GameTime gameTime)
@@ -118,12 +121,12 @@ namespace GameDevelopment_SchoofsYmke
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
 
-            //foreach (var enemyBounds in enemy.GetEnemyBounds())
-            //{
-            //    _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f); // Draw translucent red rectangle
-            //}
+            foreach (var enemyBounds in enemy.GetEnemyBounds())
+            {
+                _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f); // Draw translucent red rectangle
+            }
 
-           // _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
+            // _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
 
             if (movement.IsDead)
             {
