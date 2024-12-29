@@ -73,9 +73,6 @@ namespace GameDevelopment_SchoofsYmke
             projectile = new ProjectileManager(projectileTexture);
             enemy = new EnemyManager(projectile);
             
-
-            int screenWidth = display.ScreenWidth;
-            int screenHeight = display.ScreenHeight;
             movement = new CollisionManager(new List<ICollidable>(collidables){ hero, enemy }, level.MapSize, display.ScreenHeight);
 
             color = new Color(50, 25, 51, 255);
@@ -102,8 +99,8 @@ namespace GameDevelopment_SchoofsYmke
             }
 
             hero.Update(gameTime);
+            projectile.Update(gameTime, hero,level.MapSize, display.ScreenHeight);
             enemy.Update(gameTime, hero.location, hero, movement);
-            projectile.Update(gameTime, level.MapSize);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);
             
@@ -115,8 +112,8 @@ namespace GameDevelopment_SchoofsYmke
 
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
-            projectile.Draw(_spriteBatch, projectileTexture);
             enemy.Draw(_spriteBatch);
+            projectile.Draw(_spriteBatch, projectileTexture);
             hero.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;

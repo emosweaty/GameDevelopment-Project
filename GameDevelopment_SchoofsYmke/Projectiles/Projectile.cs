@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameDevelopment_SchoofsYmke.Animation;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
         private Vector2 position;
         private Vector2 velocity;
         private Texture2D texture;
+        private Animatie animation;
         public bool IsActive { get; set; } = true;
+        public Rectangle Bounds => new Rectangle((int)position.X, (int)position.Y, texture.Width / 6, texture.Height);
 
-        private Point screenSize;
 
         public Projectile(Vector2 position, Vector2 velocity, Texture2D texture)
         {
@@ -24,16 +26,20 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             this.velocity = velocity;
             this.texture = texture;
 
-            this.screenSize = new Point(2550, 1500);
+            animation = new Animatie();
+            animation.GetFramesFromTexture(texture.Width, texture.Height, 6, 1, "projectile");
+            animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Update(GameTime gameTime, Point mapSize)
+        public void Update(GameTime gameTime, Point mapSize, int screenHeigth)
         {
             if (!IsActive) return;
 
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (position.X < 0 || position.X > mapSize.X || position.Y < 0 || position.Y > screenSize.Y)
+            animation.Update(gameTime);
+
+            if (position.X < 0 || position.X > mapSize.X || position.Y < 0 || position.Y > screenHeigth)
             {
                 IsActive = false;
             }
@@ -44,7 +50,7 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
         {
             if (IsActive)
             {
-                sprite.Draw(texture, position, Color.White);
+                sprite.Draw(texture, position, animation.CurrentFrame.SourceRectangle,Color.White);
             }
         }
     }

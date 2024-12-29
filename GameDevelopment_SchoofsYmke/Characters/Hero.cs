@@ -36,7 +36,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
         public bool IsJumping { get; set; }
         public Vector2 Velocity { get; private set; }
         public AnimationState CurrentState { get; set; }
+        public int Health { get; private set; }
 
+        private float damageAnimationTimer;
+        private float damageAnimationDuration;
+        private bool isTakingDamage = false;
         public Hero(Texture2D texture)
         {
             this.texture = texture;
@@ -53,6 +57,29 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
             IsOnGround = location.Y >= 900f;
 
+            Health = 50;
+            damageAnimationDuration = 0.5f;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (!isTakingDamage)
+            {
+                Health -= damage;
+                isTakingDamage = true;
+                damageAnimationTimer = damageAnimationDuration;
+
+                if (Health <= 0)
+                {
+                    Health = 0;
+                    IsDeath();
+                }
+            }
+        }
+
+        public void IsDeath()
+        {
+            Debug.WriteLine("OOPS YOU DIED");
         }
 
         public void SetMovementManager(CollisionManager collision)
@@ -76,6 +103,16 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         public void Update(GameTime gameTime)
         {
+            if (isTakingDamage)
+            {
+                damageAnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (damageAnimationTimer <= 0)
+                {
+                    isTakingDamage = false;
+                }
+            }
+
             Move(gameTime);
             animation.Update(gameTime);
             HandleState();
@@ -111,6 +148,12 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         private void HandleState()
         {
+            if (isTakingDamage)
+            {
+                animation.SetAnimationState(AnimationState.Hit);
+                return;
+            }
+
             if (IsMoving)
             {
                 animation.SetAnimationState(AnimationState.Moving);

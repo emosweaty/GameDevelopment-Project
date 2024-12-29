@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Animation
 {
-    public enum AnimationState { Moving, Jumping, Idle, Attack1, Attack2, Attack3}
+    public enum AnimationState { Moving, Jumping, Idle, Attack1, Attack2, Attack3, Hit}
     public class Animatie
     {
         public AnimationFrame CurrentFrame { get; set; }
@@ -81,6 +81,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
                     animations[AnimationState.Moving] = (13, 9);
                     animations[AnimationState.Idle] = (0, 8);
                     animations[AnimationState.Jumping] = (65, 12);
+                    animations[AnimationState.Hit] = (77, 3);
                     break;
                 case "loader":
                     animations[AnimationState.Moving] = (48, 4);
@@ -94,8 +95,8 @@ namespace GameDevelopment_SchoofsYmke.Animation
         }
         public bool IsAnimationComplete()
         {
-            var (_, frameCount) = animations[currentState]; 
-            return counter >= frameCount; 
+            var (_, frameCount) = animations[currentState];
+            return counter >= frameCount;
         }
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameDevelopment_SchoofsYmke.Characters;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,17 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             projectiles.Add(new Projectile(position, direction * speed, projectileTexture));
         }
 
-        public void Update(GameTime gameTime, Point mapSize)
+        public void Update(GameTime gameTime, Hero hero, Point mapSize, int screenHeight)
         {
             foreach (var projectile in projectiles)
             {
-                projectile.Update(gameTime, mapSize);
+                projectile.Update(gameTime, mapSize, screenHeight);
+
+                if (projectile.IsActive && projectile.Bounds.Intersects(hero.Bounds))
+                {
+                    hero.TakeDamage(10);
+                    projectile.IsActive = false;
+                }
             }
 
             projectiles.RemoveAll(p => !p.IsActive);

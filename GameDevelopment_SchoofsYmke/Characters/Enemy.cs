@@ -27,15 +27,17 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private float viewRange;
         private float speed;
         private float lastDirectionX = 1;
-        private double elapsedTimeCounter = 0; 
-        private double attackDuration = 50;
 
         private float verticalVelocity = 0f;
         private const float gravity = 0.5f;
         private const float maxFallSpeed = 5f;
 
-        private float shootingCooldown = 1.5f;
+        private double attackCooldown = 0.5f;
+        private double attackAnimationTimer = 0.0f;
+
+        private float shootingCooldown = 5.0f;
         private float timeSinceLastShot = 0.0f;
+
 
         public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y+80, 120, 135);
         public bool IsOnGround { get; private set; }
@@ -56,34 +58,30 @@ namespace GameDevelopment_SchoofsYmke.Characters
         public void Update(GameTime gameTime, Vector2 heroPosition, Hero hero, CollisionManager collision, ProjectileManager projectile)
         {
             float distanceToHero = Vector2.Distance(heroPosition, location);
-
-            elapsedTimeCounter--;
+            
+            timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            attackAnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             Vector2 movement = Vector2.Zero;
 
             if (distanceToHero <= viewRange)
             {
                 direction.X = Math.Sign(heroPosition.X - location.X);
+                
+                if (distanceToHero < 180) direction.X = 0;
 
-                if (Bounds.Intersects(hero.Bounds))
+                else movement.X = direction.X * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (attackAnimationTimer > 0)
                 {
-                    direction.X = 0;
-
-                    if (elapsedTimeCounter <= 0) elapsedTimeCounter = attackDuration;
-
-                    else if (elapsedTimeCounter <= 20) animation.SetAnimationState(AnimationState.Idle);
-
-                    else if (elapsedTimeCounter > 20) animation.SetAnimationState(AnimationState.Attack1);
+                    animation.SetAnimationState(AnimationState.Attack1);
                 }
-                else
-                {
-                    animation.SetAnimationState(AnimationState.Moving);
-                    movement.X = direction.X * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
+                else if (distanceToHero <= viewRange && direction.X != 0) animation.SetAnimationState(AnimationState.Moving);
+                else animation.SetAnimationState(AnimationState.Idle);
 
-                timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (timeSinceLastShot >= shootingCooldown)
                 {
+                    attackAnimationTimer = attackCooldown;
                     Shoot(heroPosition, projectile);
                     timeSinceLastShot = 0.0f;
                 }
@@ -118,9 +116,19 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
         {
-            Vector2 direction = Vector2.Normalize(heroPosition - location);
-            projectile.AddProjectile(location, direction, 400f);
-           // Debug.WriteLine("Shoot");
+            Vector2 spawnPosition = Bounds.Center.ToVector2();
+
+            if (lastDirectionX > 0)
+            {
+                spawnPosition.X += Bounds.Width / 2;
+            }
+            else if (lastDirectionX < 0)
+            {
+                spawnPosition.X -= Bounds.Width / 2;
+            }
+
+            Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
+            projectile.AddProjectile(spawnPosition, direction, 400f);
         }
 
         public void Draw(SpriteBatch sprite)
