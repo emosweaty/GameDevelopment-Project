@@ -26,7 +26,6 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
         private float shootingCooldown;
         private float timeSinceLastShot;
-
         protected override Vector2 Direction
         {
             get { return direction; }
@@ -35,14 +34,32 @@ namespace GameDevelopment_SchoofsYmke.Characters
         public LoaderEnemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
            : base(texture, initialPosition, speed, viewRange)
         {
-            attackCooldown = 0.5f;
-            shootingCooldown = 5.0f;
+            attackCooldown = 0.4f;
+            shootingCooldown = 2.0f;
         }
 
         protected override void InitializeAnimation()
         {
             animation.GetFramesFromTexture(texture.Width, texture.Height, 6, 9, "loader");
             animation.SetAnimationState(AnimationState.Idle);
+        }
+
+        public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
+        {
+            Vector2 spawnPosition = Bounds.Center.ToVector2();
+
+            if (lastDirectionX > 0)
+            {
+                spawnPosition.X += Bounds.Width / 2;
+            }
+            else if (lastDirectionX < 0)
+            {
+                spawnPosition.X -= Bounds.Width / 2;
+            }
+
+            Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
+            Vector2 initialVelocity = new Vector2(heroPosition.X - spawnPosition.X, (heroPosition.Y - spawnPosition.Y) * 2.5f);
+            projectile.AddProjectile(spawnPosition, initialVelocity);
         }
 
         protected override void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
@@ -68,28 +85,28 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 {
                     attackAnimationTimer = attackCooldown;
                     Shoot(hero.location, projectile);
-                    timeSinceLastShot = 0.5f;
+                    timeSinceLastShot = 0f;
                 }
             }
             else animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
-        {
-            Vector2 spawnPosition = Bounds.Center.ToVector2();
+        //public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
+        //{
+        //    Vector2 spawnPosition = Bounds.Center.ToVector2();
 
-            if (lastDirectionX > 0)
-            {
-                spawnPosition.X += Bounds.Width / 2;
-            }
-            else if (lastDirectionX < 0)
-            {
-                spawnPosition.X -= Bounds.Width / 2;
-            }
+        //    if (lastDirectionX > 0)
+        //    {
+        //        spawnPosition.X += Bounds.Width / 2;
+        //    }
+        //    else if (lastDirectionX < 0)
+        //    {
+        //        spawnPosition.X -= Bounds.Width / 2;
+        //    }
 
-            Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
-            projectile.AddProjectile(spawnPosition, direction, 400f);
-        }
+        //    Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
+        //    projectile.AddProjectile(spawnPosition, direction, 400f);
+        //}
        
     }
 

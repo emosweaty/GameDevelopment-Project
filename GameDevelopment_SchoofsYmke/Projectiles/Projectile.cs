@@ -1,4 +1,6 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
+using GameDevelopment_SchoofsYmke.Interfaces;
+using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,13 +12,17 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Projectiles
 {
-    internal class Projectile 
+    internal class Projectile  : ICollidable
     {
         private Vector2 position;
         private Vector2 velocity;
         private Texture2D texture;
         private Animatie animation;
-        public bool IsActive { get; set; } = true;
+        private float gravity;
+        public bool IsActive { get; set; }
+        public bool IsSolid { get; set; } = false;
+
+        private float elapsedtime;
         public Rectangle Bounds => new Rectangle((int)position.X, (int)position.Y, texture.Width / 6, texture.Height);
 
 
@@ -29,12 +35,16 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             animation = new Animatie();
             animation.GetFramesFromTexture(texture.Width, texture.Height, 6, 1, "projectile");
             animation.SetAnimationState(AnimationState.Idle);
+
+            IsActive = true;
+            gravity = 50f;
         }
 
-        public void Update(GameTime gameTime, Point mapSize, int screenHeigth)
+        public void Update(GameTime gameTime, Point mapSize, int screenHeigth, CollisionManager collision)
         {
             if (!IsActive) return;
 
+            velocity.Y += gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             animation.Update(gameTime);
@@ -42,8 +52,13 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             if (position.X < 0 || position.X > mapSize.X || position.Y < 0 || position.Y > screenHeigth)
             {
                 IsActive = false;
+                return;
             }
 
+            if (collision.IsOnGround(this))
+            {
+                IsActive = false;
+            }
         }
 
         public void Draw(SpriteBatch sprite)
@@ -52,6 +67,11 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             {
                 sprite.Draw(texture, position, animation.CurrentFrame.SourceRectangle,Color.White);
             }
+        }
+
+        public bool CollidesWith(ICollidable other)
+        {
+            return Bounds.Intersects(other.Bounds);
         }
     }
 }

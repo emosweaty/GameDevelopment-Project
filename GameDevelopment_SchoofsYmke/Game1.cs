@@ -103,7 +103,7 @@ namespace GameDevelopment_SchoofsYmke
             }
 
             hero.Update(gameTime);
-            projectile.Update(gameTime, hero,level.MapSize, display.ScreenHeight);
+            projectile.Update(gameTime, hero,level.MapSize, display.ScreenHeight, movement );
             enemy.Update(gameTime, hero, movement);
             camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
             base.Update(gameTime);

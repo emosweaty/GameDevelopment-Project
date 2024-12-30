@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Characters;
+using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,16 +21,16 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             projectileTexture = texture;
         }
 
-        public void AddProjectile(Vector2 position, Vector2 direction, float speed)
+        public void AddProjectile(Vector2 startPosition, Vector2 initialVelocity)
         {
-            projectiles.Add(new Projectile(position, direction * speed, projectileTexture));
+            projectiles.Add(new Projectile(startPosition, initialVelocity, projectileTexture));
         }
 
-        public void Update(GameTime gameTime, Hero hero, Point mapSize, int screenHeight)
+        public void Update(GameTime gameTime, Hero hero, Point mapSize, int screenHeight, CollisionManager collision)
         {
             foreach (var projectile in projectiles)
             {
-                projectile.Update(gameTime, mapSize, screenHeight);
+                projectile.Update(gameTime, mapSize, screenHeight, collision);
 
                 if (projectile.IsActive && projectile.Bounds.Intersects(hero.Bounds))
                 {
