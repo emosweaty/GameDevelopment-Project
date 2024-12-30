@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Characters;
+using GameDevelopment_SchoofsYmke.Enemy;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -72,10 +73,13 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     }
                     else if (newBounds.Left < collidableBounds.Right &&
                              entity.Bounds.Left >= collidableBounds.Right &&
-                             newBounds.Bottom > collidableBounds.Top + 20)
+                             newBounds.Bottom > collidableBounds.Top + 28)
                     {
                         direction.X = 0;
                         newPosition.X = collidableBounds.Right;
+                        Debug.WriteLine($"Collision Detected: Entity={entity.GetType().Name}, " +
+                    $"Bounds={newBounds}, Collidable={collidable.GetType().Name}, " +
+                    $"Collidable Bounds={collidableBounds}");
                     }
 
 
@@ -86,8 +90,8 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     }
                     else if (newPosition.X + entity.Bounds.Width > screenWidth.X)
                     {
-                        newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
-                        direction.X = 0;
+                        newPosition.X = screenWidth.X - entity.Bounds.Width; 
+                        direction.X = 0;                                    
                     }
 
                     if (newPosition.Y + entity.Bounds.Height >= screenHeight)
@@ -97,11 +101,12 @@ namespace GameDevelopment_SchoofsYmke.Movement
                         IsDead = true;
                     }
                 }
+                
             }
-            if (entity is Hero hero)
-            {
-                hero.location = newPosition;
-            }
+
+            if (entity is Hero hero) hero.location = newPosition;
+           // Debug.WriteLine($"Entity: {entity.GetType().Name}, NewPosition: {newPosition}, Direction: {direction}");
+
             return direction;
             }
 

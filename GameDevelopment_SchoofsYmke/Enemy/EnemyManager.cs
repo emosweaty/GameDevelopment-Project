@@ -1,4 +1,6 @@
-﻿using GameDevelopment_SchoofsYmke.Interfaces;
+﻿using GameDevelopment_SchoofsYmke.Blocks;
+using GameDevelopment_SchoofsYmke.Enemy;
+using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
 using GameDevelopment_SchoofsYmke.Projectiles;
 using Microsoft.Xna.Framework;
@@ -16,6 +18,9 @@ namespace GameDevelopment_SchoofsYmke.Characters
     {
         private List<LoaderEnemy> enemies;
         private ProjectileManager projectile;
+
+        public IEnumerable<BaseEnemy> Enemies => enemies;
+
         public EnemyManager(ProjectileManager projectile)
         {
             enemies = new List<LoaderEnemy>();

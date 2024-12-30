@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
+using GameDevelopment_SchoofsYmke.Blocks;
 using GameDevelopment_SchoofsYmke.Characters;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
@@ -33,7 +34,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         protected virtual Vector2 Direction { get; }
         public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y + 80, 120, 135);
         public bool IsOnGround { get; protected set; }
-        public bool IsSolid => false;
+        public bool IsSolid => true;
 
         protected BaseEnemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
         {
@@ -49,7 +50,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             gravity = 0.5f;
             maxFallSpeed = 5f;
         }
-
+        
         protected abstract void InitializeAnimation();
 
         public virtual void Update(GameTime gameTime, Hero hero, CollisionManager collision, ProjectileManager projectile)
@@ -64,20 +65,16 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         {
             Vector2 movement = Vector2.Zero;
 
-            if (!collision.IsOnGround(this))
-            {
-                verticalVelocity += gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                verticalVelocity = MathHelper.Clamp(verticalVelocity, -maxFallSpeed, maxFallSpeed);
-            }
-
+            verticalVelocity += gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            verticalVelocity = MathHelper.Clamp(verticalVelocity, -maxFallSpeed, maxFallSpeed);
+            
             if (collision.IsOnGround(this)) verticalVelocity = 0f;
 
             movement.Y += verticalVelocity;
+            movement.X += direction.X;
 
-            Vector2 resolvedMovement = collision.CalculateNewPosition(this, movement);
-
-            location.X += resolvedMovement.X;
-            location.Y += resolvedMovement.Y;
+            Vector2 adjustedMovement = collision.CalculateNewPosition(this, movement);
+            location += adjustedMovement;
 
             IsOnGround = collision.IsOnGround(this);
 
@@ -86,16 +83,11 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             if (lastDirectionX > 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.None;
 
             else if (lastDirectionX < 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;
+
+            Debug.WriteLine($"isonground: {IsOnGround}");
         }
 
         protected abstract void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile);
-
-        protected void UpdateFlipping(Vector2 currenDirection)
-        {
-            if (currenDirection.X != 0) lastDirectionX = currenDirection.X;
-            if (lastDirectionX > 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.None;
-            else if (lastDirectionX < 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;
-        }
 
         public void Draw(SpriteBatch sprite)
         {
