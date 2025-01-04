@@ -90,23 +90,6 @@ namespace GameDevelopment_SchoofsYmke.Characters
             }
             else animation.SetAnimationState(AnimationState.Idle);
         }
-
-        //public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
-        //{
-        //    Vector2 spawnPosition = Bounds.Center.ToVector2();
-
-        //    if (lastDirectionX > 0)
-        //    {
-        //        spawnPosition.X += Bounds.Width / 2;
-        //    }
-        //    else if (lastDirectionX < 0)
-        //    {
-        //        spawnPosition.X -= Bounds.Width / 2;
-        //    }
-
-        //    Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
-        //    projectile.AddProjectile(spawnPosition, direction, 400f);
-        //}
        
     }
 

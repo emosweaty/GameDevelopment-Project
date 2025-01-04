@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/DeadScreen.png</SourceFile>
-  <SourceTime>2024-12-06T01:39:05.7911198+01:00</SourceTime>
+  <SourceTime>2025-01-03T20:32:22.8297048+01:00</SourceTime>
   <DestFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/bin/DesktopGL/DeadScreen.xnb</DestFile>
-  <DestTime>2024-12-30T13:28:46.2366973+01:00</DestTime>
+  <DestTime>2025-01-04T02:12:38.0618287+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

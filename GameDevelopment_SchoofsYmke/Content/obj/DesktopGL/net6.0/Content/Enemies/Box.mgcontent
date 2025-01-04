@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Box.png</SourceFile>
-  <SourceTime>2024-12-28T15:27:15.1457042+01:00</SourceTime>
+  <SourceTime>2025-01-03T20:32:22.9689739+01:00</SourceTime>
   <DestFile>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/bin/DesktopGL/Content/Enemies/Box.xnb</DestFile>
-  <DestTime>2024-12-30T13:23:04.1037802+01:00</DestTime>
+  <DestTime>2025-01-03T21:13:00.867497+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

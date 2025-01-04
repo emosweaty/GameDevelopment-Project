@@ -38,3 +38,9 @@ C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Enemies\Loader.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Enemies\Box.xnb
 C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\LifeBar.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\CyberFont.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\Health.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\Health_2.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\Hero\Arrow.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\StartScreen.xnb
+C:\Users\ymkes\Documents\AA School\Game Development\GameDevelopment_SchoofsYmke\GameDevelopment_SchoofsYmke\bin\Debug\net6.0\Content\GUI\Button.xnb

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameDevelopment_SchoofsYmke.Animation
 {
-    public enum AnimationState { Moving, Jumping, Idle, Attack1, Attack2, Attack3, Hit}
+    public enum AnimationState { Moving, Jumping, Idle, Attack1, Attack2, Attack3, Hit, Dead }
     public class Animatie
     {
         public AnimationFrame CurrentFrame { get; set; }
@@ -82,6 +82,7 @@ namespace GameDevelopment_SchoofsYmke.Animation
                     animations[AnimationState.Idle] = (0, 8);
                     animations[AnimationState.Jumping] = (65, 12);
                     animations[AnimationState.Hit] = (77, 3);
+                    animations[AnimationState.Attack1] = (39, 8);
                     break;
                 case "loader":
                     animations[AnimationState.Moving] = (48, 4);
@@ -90,6 +91,10 @@ namespace GameDevelopment_SchoofsYmke.Animation
                     break;
                 case "projectile":
                     animations[AnimationState.Idle] = (0, 6);
+                    break;
+                case "healthbar":
+                    animations[AnimationState.Idle] = (0, 1);
+                    animations[AnimationState.Hit] = (0, 4);
                     break;
             }
         }

@@ -39,7 +39,8 @@ namespace GameDevelopment_SchoofsYmke.Display
 
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(button, startButtonBounds, Color.White);
-            spriteBatch.DrawString(font, "Start Game", new Vector2(startButtonBounds.X +250 , startButtonBounds.Y+100), Color.White);
+            spriteBatch.DrawString(font, "Start Game", new Vector2(startButtonBounds.X + (startButtonBounds.Width - font.MeasureString("Start Game").X) / 2,
+            startButtonBounds.Y + (startButtonBounds.Height - font.MeasureString("Start Game").Y) / 2), Color.White);
 
         }
         public bool ShouldStartGame()

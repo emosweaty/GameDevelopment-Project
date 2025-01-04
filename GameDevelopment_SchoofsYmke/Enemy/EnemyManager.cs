@@ -36,7 +36,13 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 enemies.Add(enemy);
             }
         }
-
+        public void Reset()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.Reset();
+            }
+        }
         public void Update(GameTime gameTime, Hero hero, CollisionManager collision)
         {
             foreach (var enemy in enemies)

@@ -30,7 +30,7 @@ namespace GameDevelopment_SchoofsYmke.Movement
         {
             Rectangle dynamicBounds = entity.Bounds;
             Vector2 newPosition = new Vector2(dynamicBounds.X, dynamicBounds.Y) + direction;
-            Vector2 spawnPoint = new Vector2(0, 900);
+            Vector2 spawnPoint = new Vector2(20,  1200);
 
             Rectangle newBounds = new Rectangle(
                 (int)(newPosition.X), (int)(newPosition.Y),
@@ -77,9 +77,6 @@ namespace GameDevelopment_SchoofsYmke.Movement
                     {
                         direction.X = 0;
                         newPosition.X = collidableBounds.Right;
-                        Debug.WriteLine($"Collision Detected: Entity={entity.GetType().Name}, " +
-                    $"Bounds={newBounds}, Collidable={collidable.GetType().Name}, " +
-                    $"Collidable Bounds={collidableBounds}");
                     }
 
 
@@ -93,19 +90,20 @@ namespace GameDevelopment_SchoofsYmke.Movement
                         newPosition.X = screenWidth.X - entity.Bounds.Width; 
                         direction.X = 0;                                    
                     }
-
-                    if (newPosition.Y + entity.Bounds.Height >= screenHeight)
+                    if (entity is Hero heroInstance)
                     {
-                        newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
-                        direction = Vector2.Zero;
-                        IsDead = true;
+                        if (newPosition.Y + entity.Bounds.Height >= screenHeight)
+                        {
+                            newPosition = new Vector2(spawnPoint.X, spawnPoint.Y);
+                            direction = Vector2.Zero;
+                            heroInstance.TakeDamage(10);
+                        }
                     }
                 }
                 
             }
 
             if (entity is Hero hero) hero.location = newPosition;
-           // Debug.WriteLine($"Entity: {entity.GetType().Name}, NewPosition: {newPosition}, Direction: {direction}");
 
             return direction;
             }
