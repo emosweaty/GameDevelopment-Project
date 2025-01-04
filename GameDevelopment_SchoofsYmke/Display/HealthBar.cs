@@ -14,9 +14,10 @@ namespace GameDevelopment_SchoofsYmke.Display
         private Texture2D background;
         private Texture2D bar;
         private SpriteFont font;
+
         private Vector2 position;
         private int maxHealth;
-        private int currenHealth;
+        private int currentHealth;
         private Animatie animation;
 
         private float flashTimer;
@@ -29,7 +30,7 @@ namespace GameDevelopment_SchoofsYmke.Display
             this.font = font;
             this.position = position;
             this.maxHealth = maxHealth;
-            currenHealth = maxHealth;
+            this.currentHealth = maxHealth;
 
             flashDuration = 1.0f;
 
@@ -40,7 +41,7 @@ namespace GameDevelopment_SchoofsYmke.Display
 
         public void TakeDamage(int damage)
         {
-            currenHealth = MathHelper.Clamp(currenHealth - damage, 0, maxHealth);
+            currentHealth = MathHelper.Clamp(currentHealth - damage, 0, maxHealth);
             flashTimer = flashDuration;
         }
 
@@ -49,19 +50,19 @@ namespace GameDevelopment_SchoofsYmke.Display
             if (flashTimer > 0)
             {
                 flashTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                 animation.SetAnimationState(AnimationState.Hit);
             }
             else
             {
                 animation.SetAnimationState(AnimationState.Idle);
             }
+            animation.Update(gameTime);
         }
 
         public void Draw(SpriteBatch sprite)
         {
-            float healthPercentage = (float)currenHealth / maxHealth;
-            int filledSegments = (int)(healthPercentage * 7); 
+            float healthPercentage = (float)currentHealth / maxHealth;
+            int filledSegments = (int)(healthPercentage * 7);
 
             for (int i = 0; i < 7; i++)
             {
@@ -79,5 +80,14 @@ namespace GameDevelopment_SchoofsYmke.Display
 
             sprite.DrawString(font, healthText, textPosition, Color.White, 0, textOrigin, 2f, SpriteEffects.None, 0);
         }
+
+        public void Reset()
+        {
+            currentHealth = maxHealth;
+            flashTimer = 0f;
+            animation.SetAnimationState(AnimationState.Idle);
+        }
+
+        public int CurrentHealth => currentHealth;
     }
 }
