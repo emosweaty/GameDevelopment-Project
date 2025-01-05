@@ -88,6 +88,13 @@ namespace GameDevelopment_SchoofsYmke.Animation
                     animations[AnimationState.Moving] = (48, 4);
                     animations[AnimationState.Idle] = (36, 4);
                     animations[AnimationState.Attack1] = (0, 6);
+                    animations[AnimationState.Hit] = (30, 2);
+                    break;
+                case "security":
+                    animations[AnimationState.Idle] = (48, 4);
+                    animations[AnimationState.Moving] = (64, 6);
+                    animations[AnimationState.Hit] = (39, 2);
+                    animations[AnimationState.Attack1] = (23, 6) ;
                     break;
                 case "projectile":
                     animations[AnimationState.Idle] = (0, 6);

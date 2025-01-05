@@ -1,4 +1,5 @@
-﻿using GameDevelopment_SchoofsYmke.Characters;
+﻿using GameDevelopment_SchoofsYmke.Character;
+using GameDevelopment_SchoofsYmke.Characters;
 using GameDevelopment_SchoofsYmke.Movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

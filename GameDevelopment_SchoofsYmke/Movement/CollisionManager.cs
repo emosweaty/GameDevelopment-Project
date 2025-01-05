@@ -1,5 +1,4 @@
-﻿using GameDevelopment_SchoofsYmke.Characters;
-using GameDevelopment_SchoofsYmke.Enemy;
+﻿using GameDevelopment_SchoofsYmke.Character;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

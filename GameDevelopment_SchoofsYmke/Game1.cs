@@ -1,4 +1,5 @@
-﻿using GameDevelopment_SchoofsYmke.Characters;
+﻿using GameDevelopment_SchoofsYmke.Character;
+using GameDevelopment_SchoofsYmke.Characters;
 using GameDevelopment_SchoofsYmke.Display;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;
@@ -110,8 +111,10 @@ namespace GameDevelopment_SchoofsYmke
             hero.SetMovementManager(movement);
 
             var enemyConfigs = LevelEnemyConfig.GetConfig("Level1");
-            enemy.InitializeEnemies(enemyConfigs.Select(config =>
-                (enemyTexture, config.position, config.speed, config.viewRange)));
+            enemy.InitializeEnemies(enemyConfigs.Select(config => {
+                var configtexture = Content.Load<Texture2D>(config.texturePath);
+                return (configtexture, config.position, config.speed, config.viewRange, config.type);
+            }));
 
 
             canHeroMove = false;

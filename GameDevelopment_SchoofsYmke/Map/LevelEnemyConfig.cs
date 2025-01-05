@@ -9,20 +9,21 @@ namespace GameDevelopment_SchoofsYmke.Map
 {
     internal class LevelEnemyConfig
     {
-        public static Dictionary<string, List<(string texturePath, Vector2 position, float speed, float viewRange)>> EnemyConfigurations =
-            new Dictionary<string, List<(string, Vector2, float, float)>>()
+        public static Dictionary<string, List<(string texturePath, Vector2 position, float speed, float viewRange, string type)>> EnemyConfigurations =
+            new Dictionary<string, List<(string, Vector2, float, float, string)>>()
             {
                 {
-                    "Level1", new List<(string, Vector2, float, float)>
+                    "Level1", new List<(string, Vector2, float, float, string)>
                     {
-                        ("Enemies/Loader", new Vector2(3800, 900), 100, 800)
+                        ("Enemies/Loader", new Vector2(3800, 900), 100, 800, "loader"),
+                        ("Enemies/Security", new Vector2(900, 900), 100, 800, "security")
                     }
                 }
             };
 
-        public static List<(string texturePath, Vector2 position, float speed, float viewRange)> GetConfig(string levelId)
+        public static List<(string texturePath, Vector2 position, float speed, float viewRange, string type)> GetConfig(string levelId)
         {
-            return EnemyConfigurations.TryGetValue(levelId, out var config) ? config : new List<(string, Vector2, float, float)>();
+            return EnemyConfigurations.TryGetValue(levelId, out var config) ? config : new List<(string, Vector2, float, float, string)>();
         }
     }
 }

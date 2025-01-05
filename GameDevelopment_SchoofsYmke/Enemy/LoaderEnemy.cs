@@ -1,5 +1,6 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
 using GameDevelopment_SchoofsYmke.Blocks;
+using GameDevelopment_SchoofsYmke.Character;
 using GameDevelopment_SchoofsYmke.Enemy;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Map;

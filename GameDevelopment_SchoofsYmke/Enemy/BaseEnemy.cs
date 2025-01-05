@@ -1,6 +1,7 @@
 ﻿using GameDevelopment_SchoofsYmke.Animation;
 using GameDevelopment_SchoofsYmke.Blocks;
-using GameDevelopment_SchoofsYmke.Characters;
+using GameDevelopment_SchoofsYmke.Character;
+using GameDevelopment_SchoofsYmke.Character;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
 using GameDevelopment_SchoofsYmke.Projectiles;
@@ -40,7 +41,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         public bool isAlive { get; set; }
 
         protected virtual Vector2 Direction { get; }
-        public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y + 80, 120, 135);
+        public virtual Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y + 80, 120, 135);
         public bool IsOnGround { get; protected set; }
         public bool IsSolid { get; set; }
 
@@ -134,7 +135,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
 
         protected abstract void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile);
 
-        public void Draw(SpriteBatch sprite)
+        public  void Draw(SpriteBatch sprite)
         {
             if (isAlive)
             {

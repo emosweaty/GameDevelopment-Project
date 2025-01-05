@@ -1,4 +1,5 @@
 ﻿using GameDevelopment_SchoofsYmke.Blocks;
+using GameDevelopment_SchoofsYmke.Character;
 using GameDevelopment_SchoofsYmke.Enemy;
 using GameDevelopment_SchoofsYmke.Interfaces;
 using GameDevelopment_SchoofsYmke.Movement;
@@ -16,24 +17,35 @@ namespace GameDevelopment_SchoofsYmke.Characters
 {
     internal class EnemyManager : ICollidable
     {
-        private List<LoaderEnemy> enemies;
+        private List<BaseEnemy> enemies;
         private ProjectileManager projectile;
         private Texture2D projectileTexture;
         public IEnumerable<BaseEnemy> Enemies => enemies;
 
         public EnemyManager(ProjectileManager projectile, Texture2D projectileTexture)
         {
-            enemies = new List<LoaderEnemy>();
+            enemies = new List<BaseEnemy>();
             this.projectile = projectile;
             this.projectileTexture = projectileTexture;
         }
 
-        public void InitializeEnemies(IEnumerable<(Texture2D texture, Vector2 position, float speed, float viewRange)> enemyConfig)
+        public void InitializeEnemies(IEnumerable<(Texture2D texture, Vector2 position, float speed, float viewRange, string type)> enemyConfig)
         {
             enemies.Clear();
             foreach (var config in enemyConfig)
             {
-                var enemy = new LoaderEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
+                BaseEnemy enemy;
+                switch (config.type)
+                {
+                    case "loader":
+                        enemy = new LoaderEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
+                        break;
+                    case "security":
+                        enemy = new SecurityEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
+                        break;
+                    default:
+                        throw new ArgumentException($"Unknown enemy type: {config.type}");
+                }
                 enemies.Add(enemy);
             }
         }

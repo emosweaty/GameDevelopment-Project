@@ -17,7 +17,6 @@ namespace GameDevelopment_SchoofsYmke.Display
         public WonScreen(SpriteBatch spriteBatch, Texture2D backgroundTexture, Texture2D button, SpriteFont font)
             : base(spriteBatch, backgroundTexture, button, font)
         {
-            // Set button position and size
             int buttonWidth = 600;
             int buttonHeight = 200;
             int startX = (backgroundTexture.Width - buttonWidth) / 2;
@@ -31,7 +30,6 @@ namespace GameDevelopment_SchoofsYmke.Display
         {
             var mouseState = Mouse.GetState();
 
-            // Check if the start button was clicked
             if (startButtonBounds.Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
             {
                 buttonClicked = true;
@@ -42,7 +40,6 @@ namespace GameDevelopment_SchoofsYmke.Display
         {
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
 
-            // Draw "You Won!" message
             string winMessage = "You Won!";
             Vector2 winMessageSize = font.MeasureString(winMessage);
             Vector2 winMessagePosition = new Vector2((backgroundTexture.Width - winMessageSize.X) / 2, (backgroundTexture.Height / 4) - winMessageSize.Y);

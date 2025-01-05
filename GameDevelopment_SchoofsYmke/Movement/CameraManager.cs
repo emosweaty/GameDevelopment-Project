@@ -1,5 +1,5 @@
-﻿using GameDevelopment_SchoofsYmke.Characters;
-using GameDevelopment_SchoofsYmke.Display;
+﻿using GameDevelopment_SchoofsYmke.Display;
+using GameDevelopment_SchoofsYmke.Character;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
