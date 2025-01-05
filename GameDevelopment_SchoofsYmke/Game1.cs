@@ -20,6 +20,7 @@ namespace GameDevelopment_SchoofsYmke
         private Color color;
         private StartScreen startScreen;
         private GameOverScreen gameOverScreen;
+        private WonScreen wonScreen;
 
         private Texture2D screen;
         private Texture2D texture;
@@ -43,6 +44,8 @@ namespace GameDevelopment_SchoofsYmke
 
         private bool canHeroMove;
         private bool gameOverFlag;
+        private bool WonFlag;
+
         //Voor debuggen (Bounds)
         private Texture2D blokTexture;
         public Game1()
@@ -86,6 +89,7 @@ namespace GameDevelopment_SchoofsYmke
 
             startScreen = new StartScreen(_spriteBatch, screen, button, font);
             gameOverScreen = new GameOverScreen(_spriteBatch, screen, button, font);
+            wonScreen = new WonScreen(_spriteBatch, screen, button, font); 
 
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
 
@@ -112,6 +116,7 @@ namespace GameDevelopment_SchoofsYmke
 
             canHeroMove = false;
             gameOverFlag = false;
+            WonFlag = false;
         }
 
         protected override void Update(GameTime gameTime)
@@ -134,8 +139,22 @@ namespace GameDevelopment_SchoofsYmke
                     gameOverFlag = true;
                 }
 
-                if (gameOverFlag)
+                if (enemy.AreAllEnemiesDead() && !WonFlag)
                 {
+                    WonFlag = true;
+                }
+                if (WonFlag)
+                {
+                    wonScreen.Update(gameTime);
+
+                    if (wonScreen.ShouldGoToStartScreen())
+                    {
+                        RestartGame();
+                    }
+                }
+
+                if (gameOverFlag)
+                    {
                     gameOverScreen.Update(gameTime);
 
                     if (gameOverScreen.ShouldRestartGame())
@@ -200,6 +219,10 @@ namespace GameDevelopment_SchoofsYmke
             {
                 gameOverScreen.Draw(gameTime);
             }
+            else if (WonFlag)
+            {
+                wonScreen.Draw(gameTime);
+            }
 
             _spriteBatch.End();
 
@@ -218,7 +241,10 @@ namespace GameDevelopment_SchoofsYmke
             healthBar.Reset();
             canHeroMove = true;
             gameOverFlag = false;
+            WonFlag = false;
             hero.location = new Vector2(20, 1200);
+            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            var collidables = level.Currentlevel.GetCollidableObjects().ToList();
         }
 
     }

@@ -14,7 +14,6 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
     internal class ProjectileManager
     {
         private List<Projectile> projectiles = new List<Projectile>();
-        private Texture2D projectileTexture;
         Hero hero;
         EnemyManager enemies;
 
@@ -41,7 +40,6 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
                     projectile.IsActive = false;
                 }
 
-                // Check collision with enemies
                 if (projectile.IsActive && projectile.OwnerType == "Hero")
                 {
                     foreach (var enemy in enemies.Enemies)
