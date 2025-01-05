@@ -18,30 +18,38 @@ namespace GameDevelopment_SchoofsYmke.Enemy
 {
     internal abstract class BaseEnemy : ICollidable
     {
-        protected Texture2D texture;
+        protected ProjectileManager projectileManager;
         protected Animatie animation;
+        protected Texture2D texture;
+        protected Texture2D projectileTexture;
+
+
         protected Vector2 location;
         private Vector2 initialPosition;
         protected Vector2 direction;
-        protected float speed;
         protected float viewRange;
-
         protected float lastDirectionX;
+
+        protected float speed;
         protected float verticalVelocity;
         protected float gravity;
         protected float maxFallSpeed;
         protected Vector2 movement;
-        private int health;
-        private bool isAlive;
+
+        protected int health;
+        public bool isAlive { get; set; }
 
         protected virtual Vector2 Direction { get; }
         public Rectangle Bounds => new Rectangle((int)location.X + 60, (int)location.Y + 80, 120, 135);
         public bool IsOnGround { get; protected set; }
-        public bool IsSolid => true;
+        public bool IsSolid { get; set; }
 
-        protected BaseEnemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
+        protected BaseEnemy(Texture2D texture, Texture2D projectileTexture ,Vector2 initialPosition, float speed, float viewRange, ProjectileManager projectileManager)
         {
+            this.projectileManager = projectileManager;
             this.texture = texture;
+            this.projectileTexture = projectileTexture;
+
             this.initialPosition = initialPosition;
             this.location = initialPosition;
             this.speed = speed;
@@ -56,12 +64,18 @@ namespace GameDevelopment_SchoofsYmke.Enemy
 
             health = 50;
             isAlive = true;
+            IsSolid = true;
         }
         
         protected abstract void InitializeAnimation();
 
         public virtual void Update(GameTime gameTime, Hero hero, CollisionManager collision, ProjectileManager projectile)
         {
+            if (!isAlive)
+            {
+                Die();
+                return;
+            }
             if (isAlive)
             {
                 animation.Update(gameTime);
@@ -74,7 +88,8 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         {
             location = initialPosition;
             health = 100; 
-            isAlive = true; 
+            isAlive = true;
+            IsSolid = true;
         }
 
         public void TakeDamage(int damage)
@@ -85,6 +100,12 @@ namespace GameDevelopment_SchoofsYmke.Enemy
                 isAlive = false;
             }
         }
+
+        public void Die()
+        {
+            IsSolid = false;
+        }
+
 
         protected virtual void Movement(GameTime gameTime, Hero hero, CollisionManager collision)
         {

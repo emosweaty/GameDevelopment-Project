@@ -15,27 +15,46 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
     {
         private List<Projectile> projectiles = new List<Projectile>();
         private Texture2D projectileTexture;
+        Hero hero;
+        EnemyManager enemies;
 
-        public ProjectileManager(Texture2D texture) 
+        public void getEntities(Hero hero, EnemyManager enemies)
         {
-            projectileTexture = texture;
+            this.hero = hero;
+            this.enemies = enemies;
         }
 
-        public void AddProjectile(Vector2 startPosition, Vector2 initialVelocity)
+        public void AddProjectile(Vector2 startPosition, Vector2 initialVelocity, Texture2D texture, string ownerType)
         {
-            projectiles.Add(new Projectile(startPosition, initialVelocity, projectileTexture));
+            projectiles.Add(new Projectile(startPosition, initialVelocity, texture, ownerType));
         }
 
-        public void Update(GameTime gameTime, Hero hero, Point mapSize, int screenHeight, CollisionManager collision)
+        public void Update(GameTime gameTime ,Point mapSize, int screenHeight, CollisionManager collision)
         {
             foreach (var projectile in projectiles)
             {
                 projectile.Update(gameTime, mapSize, screenHeight, collision);
-
-                if (projectile.IsActive && projectile.Bounds.Intersects(hero.Bounds))
+                
+                if (projectile.IsActive && projectile.OwnerType == "LoaderEnemy" && projectile.Bounds.Intersects(hero.Bounds))
                 {
                     hero.TakeDamage(10);
                     projectile.IsActive = false;
+                }
+
+                // Check collision with enemies
+                if (projectile.IsActive && projectile.OwnerType == "Hero")
+                {
+                    foreach (var enemy in enemies.Enemies)
+                    {
+                        if (projectile.Bounds.Intersects(enemy.Bounds))
+                        {
+                            enemy.TakeDamage(10);
+                            projectile.IsActive = false;
+                            break;
+                        }
+                    }
+
+
                 }
             }
 
@@ -43,11 +62,12 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
  
         }
 
-        public void Draw(SpriteBatch sprite, Texture2D texture)
+        public void Draw(SpriteBatch sprite)
         {
             foreach (var projectile in projectiles)
             {
                 projectile.Draw(sprite);
+
             }
         }
     }

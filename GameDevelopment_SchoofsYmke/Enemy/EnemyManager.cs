@@ -18,13 +18,14 @@ namespace GameDevelopment_SchoofsYmke.Characters
     {
         private List<LoaderEnemy> enemies;
         private ProjectileManager projectile;
-
+        private Texture2D projectileTexture;
         public IEnumerable<BaseEnemy> Enemies => enemies;
 
-        public EnemyManager(ProjectileManager projectile)
+        public EnemyManager(ProjectileManager projectile, Texture2D projectileTexture)
         {
             enemies = new List<LoaderEnemy>();
             this.projectile = projectile;
+            this.projectileTexture = projectileTexture;
         }
 
         public void InitializeEnemies(IEnumerable<(Texture2D texture, Vector2 position, float speed, float viewRange)> enemyConfig)
@@ -32,7 +33,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
             enemies.Clear();
             foreach (var config in enemyConfig)
             {
-                var enemy = new LoaderEnemy(config.texture, config.position, config.speed, config.viewRange);
+                var enemy = new LoaderEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
                 enemies.Add(enemy);
             }
         }
@@ -57,6 +58,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
             {
                 enemy.Draw(sprite);
             }
+        }
+
+        public bool AreAllEnemiesDead()
+        {
+            return enemies.All(e => !e.isAlive);
         }
 
         public IEnumerable<Rectangle> GetEnemyBounds()

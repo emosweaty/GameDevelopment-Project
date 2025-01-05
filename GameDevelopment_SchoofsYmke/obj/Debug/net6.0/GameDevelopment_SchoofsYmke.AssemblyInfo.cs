@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameDevelopment_SchoofsYmke")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11a6b4e113151ded635d010e515ce6bd78f9e92e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1e7e0a70b26a4cc019790c53a437afbdfb7b1cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameDevelopment_SchoofsYmke")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameDevelopment_SchoofsYmke")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

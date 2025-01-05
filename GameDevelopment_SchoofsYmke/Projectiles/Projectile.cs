@@ -19,6 +19,7 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
         private Texture2D texture;
         private Animatie animation;
         private float gravity;
+        public string OwnerType { get; private set; } 
         public bool IsActive { get; set; }
         public bool IsSolid { get; set; } = false;
 
@@ -26,7 +27,7 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
         public Rectangle Bounds => new Rectangle((int)position.X, (int)position.Y, texture.Width / 6, texture.Height);
 
 
-        public Projectile(Vector2 position, Vector2 velocity, Texture2D texture)
+        public Projectile(Vector2 position, Vector2 velocity, Texture2D texture, string ownerType)
         {
             this.position = position;
             this.velocity = velocity;
@@ -38,6 +39,7 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
 
             IsActive = true;
             gravity = 50f;
+            OwnerType = ownerType;
         }
 
         public void Update(GameTime gameTime, Point mapSize, int screenHeigth, CollisionManager collision)
@@ -51,12 +53,14 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
 
             if (position.X < 0 || position.X > mapSize.X || position.Y < 0 || position.Y > screenHeigth)
             {
+                Debug.WriteLine("Projectile went out of bounds");
                 IsActive = false;
                 return;
             }
 
             if (collision.IsOnGround(this))
             {
+                Debug.WriteLine("Projectile collided with an object");
                 IsActive = false;
             }
         }
@@ -66,6 +70,8 @@ namespace GameDevelopment_SchoofsYmke.Projectiles
             if (IsActive)
             {
                 sprite.Draw(texture, position, animation.CurrentFrame.SourceRectangle,Color.White);
+                Debug.WriteLine("Projectile created at: " + position);
+
             }
         }
 

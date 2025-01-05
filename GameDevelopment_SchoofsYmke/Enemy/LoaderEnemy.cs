@@ -31,8 +31,8 @@ namespace GameDevelopment_SchoofsYmke.Characters
             get { return direction; }
         }
 
-        public LoaderEnemy(Texture2D texture, Vector2 initialPosition, float speed, float viewRange)
-           : base(texture, initialPosition, speed, viewRange)
+        public LoaderEnemy(Texture2D texture, Texture2D projectileTexture,Vector2 initialPosition, float speed, float viewRange, ProjectileManager projectileManager)
+           : base(texture, projectileTexture, initialPosition, speed, viewRange, projectileManager)
         {
             attackCooldown = 0.4f;
             shootingCooldown = 2.0f;
@@ -44,22 +44,22 @@ namespace GameDevelopment_SchoofsYmke.Characters
             animation.SetAnimationState(AnimationState.Idle);
         }
 
-        public void Shoot(Vector2 heroPosition, ProjectileManager projectile)
+        public void Shoot(Vector2 heroPosition)
         {
             Vector2 spawnPosition = Bounds.Center.ToVector2();
 
             if (lastDirectionX > 0)
             {
-                spawnPosition.X += Bounds.Width / 2;
+                spawnPosition.X += Bounds.Width / 2+20;
             }
             else if (lastDirectionX < 0)
             {
-                spawnPosition.X -= Bounds.Width / 2;
+                spawnPosition.X -= Bounds.Width / 2-20;
             }
 
             Vector2 direction = Vector2.Normalize(heroPosition - spawnPosition);
             Vector2 initialVelocity = new Vector2(heroPosition.X - spawnPosition.X, (heroPosition.Y - spawnPosition.Y) * 2.5f);
-            projectile.AddProjectile(spawnPosition, initialVelocity);
+            projectileManager.AddProjectile(spawnPosition, initialVelocity, projectileTexture, "LoaderEnemy");
         }
 
         protected override void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
@@ -84,7 +84,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 if (timeSinceLastShot >= shootingCooldown)
                 {
                     attackAnimationTimer = attackCooldown;
-                    Shoot(hero.location, projectile);
+                    Shoot(hero.location);
                     timeSinceLastShot = 0f;
                 }
             }

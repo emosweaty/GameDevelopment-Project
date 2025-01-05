@@ -21,18 +21,24 @@ namespace GameDevelopment_SchoofsYmke.Characters
 {
     internal class Hero : IGameObject, ICollidable
     {
+        private ProjectileManager projectileManager;
+        private SpriteEffects spriteEffects;
+        private IInputReader inputReader;
+        private CollisionManager collision;
+        private HealthBar healthBar;
+        private EnemyManager enemy;
+        private Animatie animation;
+
         private Texture2D texture;
         private Texture2D textureArrow;
+        
         public Vector2 location;
         private Vector2 speed;
         private Rectangle bounds;
         private Vector2 positionOffset;
-        private SpriteEffects spriteEffects;
-        Animatie animation;
-        private ProjectileManager projectileManager;
-        private IInputReader inputReader;
-        private CollisionManager collision;
-        private HealthBar healthBar;
+
+        private Point mapsize;
+        private int screenHeight;
         public bool IsOnGround { get; private set; }
         public bool IsMoving { get; set; }
         public bool IsJumping { get; set; }
@@ -51,12 +57,13 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private float shootingAnimationDuration;
         private bool isShooting;
 
-        public Hero(Texture2D texture, Texture2D arrowtexture, ProjectileManager projectileManager, HealthBar healthBar)
+        public Hero(Texture2D texture, Texture2D arrowtexture, ProjectileManager projectileManager, HealthBar healthBar, EnemyManager enemy, Point mapsize)
         {
             this.texture = texture;
             textureArrow = arrowtexture;
             this.projectileManager = projectileManager;
             this.healthBar = healthBar;
+            this.enemy = enemy;
             inputReader = new KeyboardReader(this);
             CurrentState = AnimationState.Idle;
 
@@ -76,6 +83,9 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
             maxShootCooldown = 0.8f;
             shootingAnimationDuration = 0.6f;
+
+            this.mapsize = mapsize;
+            screenHeight = mapsize.Y;
         }
 
         public void TakeDamage(int damage)
@@ -112,7 +122,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
             sprite.Draw(texture, location + positionOffset, animation.CurrentFrame.SourceRectangle, Color.White,
                 0f, Vector2.Zero, 1.0f, spriteEffects, 0f);
 
-            projectileManager.Draw(sprite, textureArrow);
+            projectileManager.Draw(sprite);
         }
 
         public void Update(GameTime gameTime)
@@ -144,7 +154,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
 
             Shoot();
 
-            projectileManager.Update(gameTime, this, new Point(1920, 1080), 1080, collision);
+            projectileManager.Update(gameTime, mapsize, screenHeight, collision);
 
             Move(gameTime);
             animation.Update(gameTime);
@@ -210,12 +220,11 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 isShooting = true;
                 shootingAnimationTimer = shootingAnimationDuration;
 
-                Vector2 spawnPosition = location;
-                Vector2 initialVelocity = new Vector2(0, -500);
-                projectileManager.AddProjectile(spawnPosition, initialVelocity);
+                Vector2 spawnPosition = location + new Vector2(60,20);
+                Vector2 initialVelocity = new Vector2(500, 0);
+                projectileManager.AddProjectile(spawnPosition, initialVelocity,textureArrow, "Hero");
 
                 shootCooldown = maxShootCooldown;
-                Debug.WriteLine("Hero fired a projectile!");
             }
         }
 

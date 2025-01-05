@@ -92,10 +92,13 @@ namespace GameDevelopment_SchoofsYmke
             var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
             healthBar = new HealthBar(healthBgTexture, healthBarTexture, font, new Vector2(20, 50), 100);
-            projectile = new ProjectileManager(projectileTexture);
-            enemy = new EnemyManager(projectile);
-            hero = new Hero(texture, arrowTexture ,projectile, healthBar);
-            
+            projectile = new ProjectileManager();
+
+            enemy = new EnemyManager(projectile, projectileTexture);
+            hero = new Hero(texture, arrowTexture ,projectile, healthBar, enemy,level.MapSize);
+
+            projectile.getEntities(hero, enemy);
+
             movement = new CollisionManager(new List<ICollidable>(collidables){ hero, enemy }, level.MapSize, display.ScreenHeight);
 
             color = new Color(50, 25, 51, 255);
@@ -151,7 +154,7 @@ namespace GameDevelopment_SchoofsYmke
                         hero.Update(gameTime);
                     }
 
-                    projectile.Update(gameTime, hero, level.MapSize, display.ScreenHeight, movement);
+                    projectile.Update(gameTime, level.MapSize, display.ScreenHeight, movement);
                     enemy.Update(gameTime, hero, movement);
                     camera.CalculateTranslation(hero, display.ScreenWidth, display.ScreenHeight, level.MapSize);
                     healthBar.Update(gameTime);
@@ -168,7 +171,7 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);
-            projectile.Draw(_spriteBatch, projectileTexture);
+            projectile.Draw(_spriteBatch);
             hero.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
