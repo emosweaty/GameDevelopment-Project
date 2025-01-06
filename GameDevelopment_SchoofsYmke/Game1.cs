@@ -151,6 +151,7 @@ namespace GameDevelopment_SchoofsYmke
 
                     if (wonScreen.ShouldGoToStartScreen())
                     {
+                        GoToStartScreen();
                         RestartGame();
                     }
                 }
@@ -247,6 +248,14 @@ namespace GameDevelopment_SchoofsYmke
             WonFlag = false;
             hero.location = new Vector2(20, 1200);
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+        }
+
+        private void GoToStartScreen()
+        {
+            startScreen = new StartScreen(_spriteBatch, screen, button, font); 
+            WonFlag = false;
+            wonScreen = new WonScreen(_spriteBatch, screen, button, font);
+
         }
 
     }
