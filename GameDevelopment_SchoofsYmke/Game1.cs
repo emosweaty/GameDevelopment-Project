@@ -45,6 +45,7 @@ namespace GameDevelopment_SchoofsYmke
         private bool canHeroMove;
         private bool gameOverFlag;
         private bool WonFlag;
+        private string currentLevel;
 
         //Voor debuggen (Bounds)
         //private Texture2D blokTexture;
@@ -54,7 +55,7 @@ namespace GameDevelopment_SchoofsYmke
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            display = new DisplayManager(_graphics);
+            display = DisplayManager.GetInstance(_graphics);
             level = new LevelManager();
             camera = new CameraManager();
         }
@@ -89,31 +90,40 @@ namespace GameDevelopment_SchoofsYmke
 
             startScreen = new StartScreen(_spriteBatch, screen, button, font);
             gameOverScreen = new GameOverScreen(_spriteBatch, screen, button, font);
-            wonScreen = new WonScreen(_spriteBatch, screen, button, font); 
+            wonScreen = new WonScreen(_spriteBatch, screen, button, font);
 
-            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            //level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            //currentLevel = "Level1";
+            //if (currentLevel == "Level1")
+            //{
+            //    level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            //}
+            //else if (currentLevel == "Level2")
+            //{
+            //    level.LoadLevel(Content, "Level2", "Content/Level2.txt", "Content/Level2-Deco.txt", "Tiles", "DecoTiles");
+            //}
 
-            var collidables = level.Currentlevel.GetCollidableObjects().ToList();
+            //var collidables = level.Currentlevel.GetCollidableObjects().ToList();
 
-            healthBar = new HealthBar(healthBgTexture, healthBarTexture, font, new Vector2(20, 50), 100);
-            projectile = new ProjectileManager();
+            //healthBar = new HealthBar(healthBgTexture, healthBarTexture, font, new Vector2(20, 50), 100);
+            //projectile = new ProjectileManager();
 
-            enemy = new EnemyManager(projectile, projectileTexture);
-            hero = new Hero(texture, arrowTexture ,projectile, healthBar, enemy,level.MapSize);
+            //enemy = new EnemyManager(projectile, projectileTexture);
+            //hero = new Hero(texture, arrowTexture ,projectile, healthBar, enemy,level.MapSize);
 
-            projectile.getEntities(hero, enemy);
+            //projectile.getEntities(hero, enemy);
 
-            movement = new CollisionManager(new List<ICollidable>(collidables){ hero, enemy }, level.MapSize, display.ScreenHeight);
+            //movement = new CollisionManager(new List<ICollidable>(collidables){ hero, enemy }, level.MapSize, display.ScreenHeight);
 
-            color = new Color(50, 25, 51, 255);
+            //color = new Color(50, 25, 51, 255);
 
-            hero.SetMovementManager(movement);
+            //hero.SetMovementManager(movement);
 
-            var enemyConfigs = LevelEnemyConfig.GetConfig("Level1");
-            enemy.InitializeEnemies(enemyConfigs.Select(config => {
-                var configtexture = Content.Load<Texture2D>(config.texturePath);
-                return (configtexture, config.position, config.speed, config.viewRange, config.type);
-            }));
+            //var enemyConfigs = LevelEnemyConfig.GetConfig(currentLevel);
+            //enemy.InitializeEnemies(enemyConfigs.Select(config => {
+            //    var configtexture = Content.Load<Texture2D>(config.texturePath);
+            //    return (configtexture, config.position, config.speed, config.viewRange, config.type);
+            //}));
 
 
             canHeroMove = false;
@@ -129,9 +139,13 @@ namespace GameDevelopment_SchoofsYmke
             if (startScreen != null)
             {
                 startScreen.Update(gameTime);
-                if (startScreen.ShouldStartGame())
+                if (startScreen.ShouldStartLevel1())
                 {
-                    StartGame();
+                    StartGame("Level1");
+                }
+                else if (startScreen.ShouldStartLevel2())
+                {
+                    StartGame("Level2");
                 }
             }
             else
@@ -192,9 +206,9 @@ namespace GameDevelopment_SchoofsYmke
 
             _spriteBatch.Begin(transformMatrix: camera.getTranslation());
             level.Currentlevel?.Draw(_spriteBatch);
-            enemy.Draw(_spriteBatch);
-            projectile.Draw(_spriteBatch);
-            hero.Draw(_spriteBatch);
+            enemy?.Draw(_spriteBatch);
+            projectile?.Draw(_spriteBatch);
+            hero?.Draw(_spriteBatch);
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
 
@@ -213,7 +227,7 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch.End();
 
             _spriteBatch.Begin();
-            healthBar.Draw(_spriteBatch);
+            healthBar?.Draw(_spriteBatch);
             if (startScreen != null && !gameOverFlag)
             {
                 startScreen.Draw(gameTime);
@@ -231,10 +245,42 @@ namespace GameDevelopment_SchoofsYmke
 
             base.Draw(gameTime);
         }
-        private void StartGame()
+        private void StartGame(string levelName)
         {
             startScreen = null;
-            canHeroMove = true; 
+            canHeroMove = true;
+            currentLevel = levelName;
+
+            if (currentLevel == "Level1")
+            {
+                level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            }
+            else if (currentLevel == "Level2")
+            {
+                level.LoadLevel(Content, "Level2", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
+            }
+
+            var collidables = level.Currentlevel.GetCollidableObjects().ToList();
+
+            healthBar = new HealthBar(healthBgTexture, healthBarTexture, font, new Vector2(20, 50), 100);
+            projectile = new ProjectileManager();
+
+            enemy = new EnemyManager(projectile, projectileTexture);
+            hero = new Hero(texture, arrowTexture, projectile, healthBar, enemy, level.MapSize);
+
+            projectile.getEntities(hero, enemy);
+
+            movement = new CollisionManager(new List<ICollidable>(collidables) { hero, enemy }, level.MapSize, display.ScreenHeight);
+
+            color = new Color(50, 25, 51, 255);
+
+            hero.SetMovementManager(movement);
+
+            var enemyConfigs = LevelEnemyConfig.GetConfig(currentLevel);
+            enemy.InitializeEnemies(enemyConfigs.Select(config => {
+                var configtexture = Content.Load<Texture2D>(config.texturePath);
+                return (configtexture, config.position, config.speed, config.viewRange, config.type);
+            }));
         }
 
         private void RestartGame()
@@ -247,7 +293,6 @@ namespace GameDevelopment_SchoofsYmke
             gameOverFlag = false;
             WonFlag = false;
             hero.location = new Vector2(20, 1200);
-            level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
         }
 
         private void GoToStartScreen()

@@ -12,7 +12,6 @@ namespace GameDevelopment_SchoofsYmke.Movement
     internal class CameraManager
     {
         private Matrix translation;
-        private DisplayManager display;
         
         public void CalculateTranslation(Hero hero,int screenWidth, int screenHeight, Point mapSize)
         {
