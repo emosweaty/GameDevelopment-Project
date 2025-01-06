@@ -63,7 +63,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
             projectileManager.AddProjectile(spawnPosition, initialVelocity, projectileTexture, "LoaderEnemy");
         }
 
-        protected override void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
+        protected override void EnemyBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
         {
             float distanceToHero = Vector2.Distance(hero.location, location);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -90,6 +90,8 @@ namespace GameDevelopment_SchoofsYmke.Characters
                 }
             }
             else animation.SetAnimationState(AnimationState.Idle);
+
+
         }
        
     }

@@ -24,7 +24,6 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         protected Texture2D texture;
         protected Texture2D projectileTexture;
 
-
         protected Vector2 location;
         private Vector2 initialPosition;
         protected Vector2 direction;
@@ -45,7 +44,11 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         public bool IsOnGround { get; protected set; }
         public bool IsSolid { get; set; }
 
-        protected BaseEnemy(Texture2D texture, Texture2D projectileTexture ,Vector2 initialPosition, float speed, float viewRange, ProjectileManager projectileManager)
+        protected float hitAnimationTimer;
+        protected float hitAnimationDuration = 0.5f;
+        protected bool isTakingDamage;
+
+        protected BaseEnemy(Texture2D texture, Texture2D projectileTexture, Vector2 initialPosition, float speed, float viewRange, ProjectileManager projectileManager)
         {
             this.projectileManager = projectileManager;
             this.texture = texture;
@@ -67,7 +70,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             isAlive = true;
             IsSolid = true;
         }
-        
+
         protected abstract void InitializeAnimation();
 
         public virtual void Update(GameTime gameTime, Hero hero, CollisionManager collision, ProjectileManager projectile)
@@ -88,7 +91,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         public void Reset()
         {
             location = initialPosition;
-            health = 100; 
+            health = 100;
             isAlive = true;
             IsSolid = true;
         }
@@ -96,9 +99,15 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         public void TakeDamage(int damage)
         {
             health -= damage;
+
             if (health <= 0)
             {
                 isAlive = false;
+            }
+            else
+            {
+                isTakingDamage = true;
+                hitAnimationTimer = hitAnimationDuration;
             }
         }
 
@@ -107,14 +116,13 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             IsSolid = false;
         }
 
-
         protected virtual void Movement(GameTime gameTime, Hero hero, CollisionManager collision)
         {
             Vector2 movement = Vector2.Zero;
 
             verticalVelocity += gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             verticalVelocity = MathHelper.Clamp(verticalVelocity, -maxFallSpeed, maxFallSpeed);
-            
+
             if (collision.IsOnGround(this)) verticalVelocity = 0f;
 
             movement.Y += verticalVelocity;
@@ -128,14 +136,30 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             if (direction.X != 0) lastDirectionX = direction.X;
 
             if (lastDirectionX > 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.None;
-
             else if (lastDirectionX < 0) animation.CurrentFrame.SpriteEffect = SpriteEffects.FlipHorizontally;
-
         }
 
-        protected abstract void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile);
+        protected virtual void UpdateBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
+        {
+            if (isTakingDamage)
+            {
+                hitAnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (hitAnimationTimer <= 0)
+                {
+                    isTakingDamage = false;
+                }
 
-        public  void Draw(SpriteBatch sprite)
+                animation.SetAnimationState(AnimationState.Hit);
+            }
+            else
+            {
+                EnemyBehaviour(gameTime, hero, projectile);
+            }
+        }
+
+        protected abstract void EnemyBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile);
+
+        public void Draw(SpriteBatch sprite)
         {
             if (isAlive)
             {
