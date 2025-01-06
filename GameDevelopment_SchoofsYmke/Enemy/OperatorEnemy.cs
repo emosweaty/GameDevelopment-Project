@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GameDevelopment_SchoofsYmke.Enemy
 {
@@ -19,21 +20,22 @@ namespace GameDevelopment_SchoofsYmke.Enemy
         private float shootingCooldown;
         private float timeSinceLastShot;
         private Rectangle attackBounds;
+
         public override Rectangle Bounds => new Rectangle((int)location.X, (int)location.Y, 192, 192);
 
         public OperatorEnemy(Texture2D texture, Texture2D projectileTexture, Vector2 initialPosition, float speed, float viewRange, ProjectileManager projectileManager)
             : base(texture, projectileTexture, initialPosition, speed, viewRange, projectileManager)
         {
-            attackCooldown = 0.5f;
-            shootingCooldown = 1.5f;
+            attackCooldown = 1.5f;
+            shootingCooldown = 2.5f;
 
-            health = 40;
         }
 
         protected override void InitializeAnimation()
         {
             animation.GetFramesFromTexture(texture.Width, texture.Height, 8, 11, "operator");
             animation.SetAnimationState(AnimationState.Idle);
+
         }
 
         public override void Update(GameTime gameTime, Hero hero, CollisionManager collision, ProjectileManager projectile)
@@ -49,11 +51,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
                 UpdateBehaviour(gameTime, hero, projectile);
             }
         }
-        public override void Reset()
-        {
-            health = 20;
-            base.Reset();
-        }
+    
 
 
         protected override void EnemyBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile)
@@ -73,14 +71,15 @@ namespace GameDevelopment_SchoofsYmke.Enemy
                     animation.SetAnimationState(AnimationState.Attack1);
 
                     attackBounds = new Rectangle(
-                         (int)hero.location.X + 50,
-                         (int)hero.location.Y + 60,
-                         50,
-                         50 
+                         (int)hero.location.X + 10,
+                         (int)hero.location.Y + 20,
+                         48,
+                         48 
                     );
 
                     if (attackBounds.Intersects(hero.Bounds))
                     {
+
                         hero.TakeDamage(10);
                     }
                 }
@@ -101,15 +100,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             }
         }
 
-        public override void Draw(SpriteBatch sprite)
-        {
-            base.Draw(sprite);
-
-            if (attackAnimationTimer > 0)
-            {
-                sprite.Draw(texture, attackBounds, Color.Red * 0.5f); 
-            }
-        }
+      
     }
 }
 

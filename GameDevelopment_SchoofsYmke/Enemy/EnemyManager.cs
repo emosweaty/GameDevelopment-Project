@@ -20,6 +20,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
         private List<BaseEnemy> enemies;
         private ProjectileManager projectile;
         private Texture2D projectileTexture;
+
         public IEnumerable<BaseEnemy> Enemies => enemies;
 
         public EnemyManager(ProjectileManager projectile, Texture2D projectileTexture)
@@ -44,7 +45,7 @@ namespace GameDevelopment_SchoofsYmke.Characters
                         enemy = new SecurityEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
                         break;
                     case "operator":
-                        enemy = new OperatorEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
+                        enemy = new OperatorEnemy(config.texture ,projectileTexture, config.position, config.speed, config.viewRange, projectile);
                         break;
                     default:
                         throw new ArgumentException($"Unknown enemy type: {config.type}");

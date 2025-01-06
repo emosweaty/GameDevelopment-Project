@@ -78,7 +78,7 @@ namespace GameDevelopment_SchoofsYmke.Character
 
             IsOnGround = location.Y >= 900f;
 
-            Health = 50;
+            Health = 100;
             damageAnimationDuration = 0.5f;
             isTakingDamage = false;
 
@@ -96,6 +96,7 @@ namespace GameDevelopment_SchoofsYmke.Character
                 Health -= damage;
                 isTakingDamage = true;
                 damageAnimationTimer = damageAnimationDuration;
+                Debug.WriteLine($"Hero took damage: {damage}. Health remaining: {Health}");
 
                 healthBar.TakeDamage(damage);
                 if (Health <= 0)
@@ -234,7 +235,7 @@ namespace GameDevelopment_SchoofsYmke.Character
             location = new Vector2(40, 1200);
             speed = new Vector2(10, 1);
             IsOnGround = location.Y >= 900f;
-            Health = 50;
+            Health = 100;
             isTakingDamage = false;
             damageAnimationTimer = 0f;
             shootCooldown = 0f;

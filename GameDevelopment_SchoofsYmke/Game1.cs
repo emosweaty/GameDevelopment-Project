@@ -47,7 +47,7 @@ namespace GameDevelopment_SchoofsYmke
         private bool WonFlag;
 
         //Voor debuggen (Bounds)
-        private Texture2D blokTexture;
+        //private Texture2D blokTexture;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -71,8 +71,8 @@ namespace GameDevelopment_SchoofsYmke
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Voor debuggen (Bounds)
-            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            blokTexture.SetData(new[] { Color.White });
+            //blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            //blokTexture.SetData(new[] { Color.White });
 
             font = Content.Load<SpriteFont>("GUI/CyberFont");
 
@@ -85,6 +85,7 @@ namespace GameDevelopment_SchoofsYmke
             texture = Content.Load<Texture2D>("HeroSprite");
             projectileTexture = Content.Load<Texture2D>("Enemies/Box");
             arrowTexture = Content.Load<Texture2D>("Hero/Arrow");
+
 
             startScreen = new StartScreen(_spriteBatch, screen, button, font);
             gameOverScreen = new GameOverScreen(_spriteBatch, screen, button, font);
@@ -196,10 +197,10 @@ namespace GameDevelopment_SchoofsYmke
             //Voor Debuggen (bounds)
             //Rectangle heroBounds = hero.Bounds;
 
-            foreach (var enemyBounds in enemy.GetEnemyBounds())
-            {
-                _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
-            }
+            //foreach (var enemyBounds in enemy.GetEnemyBounds())
+            //{
+            //    _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
+            //}
 
             // _spriteBatch.Draw(blokTexture, enemyBounds, Color.Red * 0.5f);
 
@@ -220,7 +221,7 @@ namespace GameDevelopment_SchoofsYmke
             {
                 gameOverScreen.Draw(gameTime);
             }
-            else if (WonFlag)
+           else if (WonFlag)
             {
                 wonScreen.Draw(gameTime);
             }
@@ -240,12 +241,12 @@ namespace GameDevelopment_SchoofsYmke
             enemy.Reset();
             hero.Reset();
             healthBar.Reset();
+            movement.IsDead = false;
             canHeroMove = true;
             gameOverFlag = false;
             WonFlag = false;
             hero.location = new Vector2(20, 1200);
             level.LoadLevel(Content, "Level1", "Content/Level1.txt", "Content/Level1-Deco.txt", "Tiles", "DecoTiles");
-            var collidables = level.Currentlevel.GetCollidableObjects().ToList();
         }
 
     }

@@ -93,14 +93,14 @@ namespace GameDevelopment_SchoofsYmke.Animation
                 case "security":
                     animations[AnimationState.Idle] = (48, 4);
                     animations[AnimationState.Moving] = (64, 6);
-                    animations[AnimationState.Hit] = (39, 2);
+                    animations[AnimationState.Hit] = (40, 2);
                     animations[AnimationState.Attack1] = (23, 6) ;
                     break;
                 case "operator":
                     animations[AnimationState.Idle] = (48, 4);
                     animations[AnimationState.Moving] = (72, 8);
-                    animations[AnimationState.Hit] = (30, 2);
-                    animations[AnimationState.Attack1] = (8, 8);
+                    animations[AnimationState.Hit] = (40, 2);
+                    animations[AnimationState.Attack1] = (32, 4);
                     break;
                 case "projectile":
                     animations[AnimationState.Idle] = (0, 6);
@@ -108,6 +108,9 @@ namespace GameDevelopment_SchoofsYmke.Animation
                 case "healthbar":
                     animations[AnimationState.Idle] = (0, 1);
                     animations[AnimationState.Hit] = (0, 4);
+                    break;
+                case "boom":
+                    animations[AnimationState.Idle] = (0, 8);
                     break;
             }
         }
