@@ -222,7 +222,7 @@ namespace GameDevelopment_SchoofsYmke.Character
                 shootingAnimationTimer = shootingAnimationDuration;
 
                 Vector2 spawnPosition = location + new Vector2(60, 20);
-                Vector2 initialVelocity = new Vector2(500, 0);
+                Vector2 initialVelocity = spriteEffects == SpriteEffects.FlipHorizontally ? new Vector2(-500, 0) : new Vector2(500, 0);
                 projectileManager.AddProjectile(spawnPosition, initialVelocity, textureArrow, "Hero");
 
                 shootCooldown = maxShootCooldown;
