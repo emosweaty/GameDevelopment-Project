@@ -13,6 +13,7 @@
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/DecoTiles.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Box.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Loader.png</File>
+    <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Operator.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Enemies/Security.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/GUI/Button.png</File>
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/GUI/Health_2.png</File>
@@ -24,6 +25,7 @@
     <File>C:/Users/ymkes/Documents/AA School/Game Development/GameDevelopment_SchoofsYmke/GameDevelopment_SchoofsYmke/Content/Tiles.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

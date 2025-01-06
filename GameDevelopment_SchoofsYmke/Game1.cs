@@ -25,7 +25,6 @@ namespace GameDevelopment_SchoofsYmke
 
         private Texture2D screen;
         private Texture2D texture;
-        private Texture2D enemyTexture;
         private Texture2D projectileTexture;
         private Texture2D healthBgTexture;
         private Texture2D healthBarTexture;
@@ -84,7 +83,6 @@ namespace GameDevelopment_SchoofsYmke
             healthBarTexture = Content.Load<Texture2D>("GUI/Health");
 
             texture = Content.Load<Texture2D>("HeroSprite");
-            enemyTexture = Content.Load<Texture2D>("Enemies/Loader");
             projectileTexture = Content.Load<Texture2D>("Enemies/Box");
             arrowTexture = Content.Load<Texture2D>("Hero/Arrow");
 

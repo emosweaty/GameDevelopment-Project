@@ -88,7 +88,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
             }
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             location = initialPosition;
             health = 100;
@@ -159,7 +159,7 @@ namespace GameDevelopment_SchoofsYmke.Enemy
 
         protected abstract void EnemyBehaviour(GameTime gameTime, Hero hero, ProjectileManager projectile);
 
-        public void Draw(SpriteBatch sprite)
+        public virtual void Draw(SpriteBatch sprite)
         {
             if (isAlive)
             {

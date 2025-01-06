@@ -15,8 +15,9 @@ namespace GameDevelopment_SchoofsYmke.Map
                 {
                     "Level1", new List<(string, Vector2, float, float, string)>
                     {
-                        ("Enemies/Loader", new Vector2(3800, 900), 100, 800, "loader"),
-                        ("Enemies/Security", new Vector2(900, 900), 100, 800, "security")
+                        ("Enemies/Loader", new Vector2(3800, 900), 80, 800, "loader"),
+                        ("Enemies/Security", new Vector2(2100, 900), 80, 800, "security"),
+                        ("Enemies/Operator", new Vector2(2500, 900), 80, 1000, "operator")
                     }
                 }
             };

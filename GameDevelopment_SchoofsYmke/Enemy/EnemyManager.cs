@@ -43,6 +43,9 @@ namespace GameDevelopment_SchoofsYmke.Characters
                     case "security":
                         enemy = new SecurityEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
                         break;
+                    case "operator":
+                        enemy = new OperatorEnemy(config.texture, projectileTexture, config.position, config.speed, config.viewRange, projectile);
+                        break;
                     default:
                         throw new ArgumentException($"Unknown enemy type: {config.type}");
                 }
